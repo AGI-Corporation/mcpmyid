@@ -1,0 +1,9 @@
+{
+  "name": "@activepieces/piece-mental-health-swarm",
+  "displayName": "Mental Health Swarm",
+  "version": "0.1.0",
+  "description": "Mental Health Swarm discovered from Widecanvas, optimized for Agent OS.",
+  "dependencies": {
+    "@activepieces/pieces-framework": "workspace:*"
+  }
+}

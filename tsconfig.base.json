@@ -450,6 +450,9 @@
       "@activepieces/piece-mempool-space": [
         "packages/pieces/community/mempool-space/src/index.ts"
       ],
+      "@activepieces/piece-mental-health-swarm": [
+        "packages/pieces/community/mental-health-swarm/src/index.ts"
+      ],
       "@activepieces/piece-messagebird": [
         "packages/pieces/community/messagebird/src/index.ts"
       ],
