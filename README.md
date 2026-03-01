@@ -46,9 +46,9 @@ src="https://github.com/activepieces/activepieces/assets/1812998/76c97441-c285-4
 <br>
 <br>
 
-# 🤯 Welcome to Activepieces
+# 🤯 Welcome to MCP.My.ID
 
-[![Activepieces Agent OS](https://img.shields.io/badge/Agent%20OS-Enabled-brightgreen?style=for-the-badge&logo=ai)](AGENT_FRAMEWORK.md)
+[![AGI Corp Agent OS](https://img.shields.io/badge/Agent%20OS-Enabled-brightgreen?style=for-the-badge&logo=ai)](AGENT_FRAMEWORK.md)
 
 All-in-one AI automation designed to be **extensible** through a **type-safe** pieces framework written in **TypeScript**.
 When you contribute pieces to Activepieces they become automatically available as MCP servers that you can use with LLMs through Claude Desktop, Cursor or Windsurf!
@@ -56,7 +56,7 @@ When you contribute pieces to Activepieces they become automatically available a
 <br>
 <br>
 
-## 🔥 Why Activepieces is Different:
+## 🔥 Why MCP.My.Id is Different:
 
 - **💖 Loved by Everyone**: Intuitive interface and great experience for both technical and non-technical users with a quick learning curve.
   
@@ -101,7 +101,7 @@ When you contribute pieces to Activepieces they become automatically available a
 
 ## 🔌 Create Your Own Piece
 
-Activepieces supports integrations with Google Sheets, OpenAI, Discord, RSS, and over 200 other services. [Check out the full list of supported integrations](https://www.activepieces.com/pieces), which is constantly expanding thanks to our community's contributions.
+Built on layers like Activepieces supports integrations with Google Sheets, OpenAI, Discord, RSS, and over 200 other services. [Check out the full list of supported integrations](https://www.activepieces.com/pieces), which is constantly expanding thanks to our community's contributions.
 
 As an **open ecosystem**, all integration source code is accessible in our repository. These integrations are versioned and [published](https://www.npmjs.com/search?q=%40activepieces) directly to npmjs.com upon contribution.
 
