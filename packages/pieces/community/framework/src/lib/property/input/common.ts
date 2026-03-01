@@ -6,10 +6,7 @@ import { PropertyType } from "./property-type";
 
 export const BasePropertySchema = Type.Object({
     displayName: Type.String(),
-    description: Type.Optional(Type.String()),
-    aiDescription: Type.Optional(Type.String()),
-    examples: Type.Optional(Type.Array(Type.Any())),
-    tags: Type.Optional(Type.Array(Type.String())),
+    description: Type.Optional(Type.String())
 })
 
 export type BasePropertySchema = Static<typeof BasePropertySchema>

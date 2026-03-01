@@ -14,7 +14,6 @@ import { webhookService } from '../webhooks/webhook.service'
 import { userInteractionWatcher } from '../workers/user-interaction-watcher'
 import { mcpService } from './mcp-service'
 import { MAX_TOOL_NAME_LENGTH, mcpPropertyToZod, piecePropertyToZod } from './mcp-utils'
-import { repairOutput, semanticValidate } from '../ai/cactus-utils'
 
 export async function createMcpServer({
     mcpId,
@@ -60,7 +59,7 @@ export async function createMcpServer({
             
             server.tool(
                 actionName,
-                action.aiDescription || action.description,
+                action.description,
                 Object.fromEntries(
                     Object.entries(action.props).filter(([_key, prop]) => 
                         prop.type !== PropertyType.MARKDOWN,
@@ -79,15 +78,6 @@ export async function createMcpServer({
                         ...(pieceConnectionExternalId ? { auth: `{{connections['${pieceConnectionExternalId}']}}` } : {}),
                     }
                     
-                    // Cactus adaptive repair layer
-                    const query = params.query || ''; // MCP clients might pass query
-                    const repairedInputs = repairOutput(action, parsedInputs, query);
-                    const validation = semanticValidate(action, repairedInputs, query);
-
-                    if (!validation.valid) {
-                        logger.warn({ action: action.name, reason: validation.reason }, '[McpServer] Semantic validation failed');
-                    }
-
                     const result = await userInteractionWatcher(logger).submitAndWaitForResponse<EngineHelperResponse<ExecuteActionResponse>>({
                         jobType: UserInteractionJobType.EXECUTE_TOOL,
                         actionName: action.name,
@@ -95,7 +85,7 @@ export async function createMcpServer({
                         pieceVersion: piece.version,
                         packageType: piece.packageType,
                         pieceType: piece.pieceType,
-                        input: repairedInputs,
+                        input: parsedInputs,
                         projectId,
                     })
 

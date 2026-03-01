@@ -43,24 +43,18 @@ export const ActionBase = Type.Object({
   name: Type.String(),
   displayName: Type.String(),
   description: Type.String(),
-  aiDescription: Type.Optional(Type.String()),
   props: PiecePropertyMap,
   requireAuth: Type.Boolean(),
   errorHandlingOptions: Type.Optional(ErrorHandlingOptionsParam),
-  trustPolicy: Type.Optional(Type.String()),
-  categories: Type.Optional(Type.Array(Type.String())),
 })
 
 export type ActionBase = {
   name: string,
   displayName: string,
   description: string,
-  aiDescription?: string,
   props: PiecePropertyMap,
   requireAuth: boolean;
   errorHandlingOptions?: ErrorHandlingOptionsParam;
-  trustPolicy?: string;
-  categories?: string[];
 }
 
 export const TriggerBase = Type.Composite([

@@ -6,8 +6,6 @@ import { syncPieceCommand } from './lib/commands/sync-pieces';
 import { publishPieceCommand } from './lib/commands/publish-piece';
 import { buildPieceCommand } from './lib/commands/build-piece';
 import { generateWorkerTokenCommand } from './lib/commands/generate-worker-token';
-import { agentOptimizeCommand } from './lib/commands/agent-optimize';
-import './lib/commands/agent-samples';
 
 const pieceCommand = new Command('pieces')
   .description('Manage pieces');
@@ -41,5 +39,4 @@ program.addCommand(pieceCommand);
 program.addCommand(actionCommand);
 program.addCommand(triggerCommand);
 program.addCommand(workerCommand);
-program.addCommand(agentOptimizeCommand);
 program.parse(process.argv);

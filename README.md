@@ -48,8 +48,6 @@ src="https://github.com/activepieces/activepieces/assets/1812998/76c97441-c285-4
 
 # 🤯 Welcome to Activepieces
 
-[![Activepieces Agent OS](https://img.shields.io/badge/Agent%20OS-Enabled-brightgreen?style=for-the-badge&logo=ai)](AGENT_FRAMEWORK.md)
-
 All-in-one AI automation designed to be **extensible** through a **type-safe** pieces framework written in **TypeScript**.
 When you contribute pieces to Activepieces they become automatically available as MCP servers that you can use with LLMs through Claude Desktop, Cursor or Windsurf!
 
@@ -64,7 +62,6 @@ When you contribute pieces to Activepieces they become automatically available a
 
 - **🌐 Open Ecosystem:** All pieces are open source and available on npmjs.com, **60% of the pieces are contributed by the community**.
 
-- **🤖 Agent OS Pillar**: Built on research-backed adaptive routing (CactusRoute) and decentralized discovery (NANDA).
 - **🛠️ Largest open source MCP toolkit**: All our pieces (280+) are available as MCP that you can use with LLMs on Claude Desktop, Cursor or Windsurf.
 
 - **🛠️  Pieces are written in Typescript**: Pieces are npm packages in TypeScript, offering full customization with the best developer experience, including **hot reloading** for **local** piece development on your machine. 😎
