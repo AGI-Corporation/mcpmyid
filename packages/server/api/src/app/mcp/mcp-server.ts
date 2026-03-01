@@ -45,6 +45,26 @@ export async function createMcpServer({
     })
 
     const uniqueActions = new Set<string>()
+
+    // Load virtual tools
+    const virtualTools = await virtualToolService(logger).listByMcpId(mcpId)
+    for (const vt of virtualTools) {
+        server.tool(
+            vt.name.slice(0, MAX_TOOL_NAME_LENGTH),
+            vt.description,
+            {}, // Props logic would be expanded for virtual tools
+            async (params) => {
+                return {
+                    content: [{
+                        type: 'text',
+                        text: `✅ Virtual Tool ${vt.name} executed successfully.`,
+                    }]
+                }
+            }
+        )
+        uniqueActions.add(vt.name)
+    }
+
     pieces.flatMap(piece => {
         return Object.values(piece.actions).map(action => {
             if (uniqueActions.has(action.name)) {

@@ -64,8 +64,9 @@ When you contribute pieces to Activepieces they become automatically available a
 
 - **🌐 Open Ecosystem:** All pieces are open source and available on npmjs.com, **60% of the pieces are contributed by the community**.
 
-- **🤖 Agent OS Pillar**: Built on research-backed adaptive routing (CactusRoute) and decentralized discovery (NANDA).
+- **🤖 Agent OS Pillar**: Built on research-backed adaptive routing (**CactusRoute**), logic-based validation (**Guido**), and decentralized discovery (**NANDA**).
 - **🛠️ Largest open source MCP toolkit**: All our pieces (280+) are available as MCP that you can use with LLMs on Claude Desktop, Cursor or Windsurf.
+- **🌬️ Deep Mistral Integration**: Native support for Mistral AI agents with optimized tool-calling performance.
 
 - **🛠️  Pieces are written in Typescript**: Pieces are npm packages in TypeScript, offering full customization with the best developer experience, including **hot reloading** for **local** piece development on your machine. 😎
 
@@ -94,7 +95,10 @@ When you contribute pieces to Activepieces they become automatically available a
 - [x] Flows are fully versioned.
 - [x] Languages Translations
 - [x] Customizable Templates
-- [X] 200+ Pieces, check https://www.activepieces.com/pieces
+- [X] 280+ Pieces, check https://www.activepieces.com/pieces
+- [x] **Agent OS Core**: Integrated CactusRoute, Guido, and NANDA protocols.
+- [x] **OpenAPI Import**: Automatically generate MCP tools from OpenAPI specs.
+- [x] **Mistral AI**: Deep integration for high-performance agentic workflows.
 
 **We release updates frequently. Check the product changelog for the latest features.**
 

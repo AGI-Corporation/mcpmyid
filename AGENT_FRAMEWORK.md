@@ -2,13 +2,14 @@
 
 Welcome to the **Activepieces Agent OS**, a research-backed framework designed to optimize the bridge between automated workflows and autonomous AI agents.
 
-## 🚀 The Three Pillars
+## 🚀 The Four Pillars of Agent OS
 
 ### 1. Cactus-Optimized Execution (Adaptive Routing)
 Based on the **CactusRoute** 7-layer framework, every tool call in Activepieces is now optimized for the most reliable agentic experience:
-- **Adaptive Repair**: Auto-corrects common LLM mistakes (time formats, negative numbers).
-- **Semantic Guardrails**: Real-time hallucination detection by cross-checking prompts.
-- **Deterministic Fallback**: Regex-based extraction to rescue failed LLM tool calls.
+- **Layer 1: Difficulty Estimation**: Automatically assesses query complexity to route to the most efficient model.
+- **Layer 3: Adaptive Repair**: Auto-corrects common LLM mistakes like time formats and negative numbers.
+- **Layer 4: Semantic Guardrails**: Real-time hallucination detection by cross-checking prompts against parameters.
+- **Layer 7: Deterministic Fallback**: Regex-based extraction to rescue failed LLM tool calls directly from user intent.
 
 ### 2. NANDA Protocol Integration (Decentralized Discovery)
 Activepieces implements the **NANDA Stack** for the Open Agentic Web:
@@ -19,7 +20,13 @@ Activepieces implements the **NANDA Stack** for the Open Agentic Web:
 ### 3. Virtual Tool Orchestration (Guido Rule Engine)
 Inspired by the **Guido** configuration manager, users can now build high-level "super-tools":
 - **Tool Blending**: Aggregate properties from 280+ pieces into single optimized interfaces.
-- **Conditional Validation**: Define logic-based rules to ensure data integrity during tool use.
+- **Conditional Validation**: Define logic-based rules (if-then-else) to ensure data integrity.
+- **Negation & Pattern Matching**: Advanced support for `NOT`, `CONTAINS`, and nested path validation.
+
+### 4. Multi-Model Tooling (Mistral & Beyond)
+Deep integration with leading AI providers to ensure maximum compatibility:
+- **Mistral Native Tooling**: Optimized support for Mistral Large, Small, and Codestral.
+- **OpenAPI Auto-Import**: Dynamically generate MCP tools from any OpenAPI specification (inspired by `mcp-generator-2.0`).
 
 ## 🧩 New Framework Components
 

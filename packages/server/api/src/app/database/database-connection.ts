@@ -40,6 +40,7 @@ import { TriggerEventEntity } from '../flows/trigger-events/trigger-event.entity
 import { DatabaseType, system } from '../helper/system/system'
 import { McpEntity } from '../mcp/mcp-entity'
 import { McpPieceEntity } from '../mcp/mcp-piece-entity'
+import { VirtualToolEntity } from '../mcp/virtual-tool-entity'
 import { PieceMetadataEntity } from '../pieces/piece-metadata-entity'
 import { PlatformEntity } from '../platform/platform.entity'
 import { ProjectEntity } from '../project/project-entity'
@@ -96,6 +97,7 @@ function getEntities(): EntitySchema<unknown>[] {
         TodoEntity,
         McpEntity,
         McpPieceEntity,
+        VirtualToolEntity,
     ]
 
     switch (edition) {

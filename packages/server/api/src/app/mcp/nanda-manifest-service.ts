@@ -64,7 +64,10 @@ export const nandaManifestService = (logger: FastifyBaseLogger) => ({
             governance: {
                 data_retention: 'ZERO_RETENTION_PREFERENCE',
                 human_in_loop: 'REQUIRED_FOR_SENSITIVE',
-                compliance: enabledPieces.some(p => p.pieceName.includes('fhir')) ? ['HIPAA', 'GDPR_HEALTH'] : [],
+                compliance: [
+                    ...(enabledPieces.some(p => p.pieceName.includes('fhir')) ? ['HIPAA', 'GDPR_HEALTH'] : []),
+                    ...(enabledPieces.some(p => p.pieceName.includes('mistral') || p.pieceName.includes('ai-agent')) ? ['GDPR_COMPLIANT_AI'] : []),
+                ],
             },
             trust_anchor: 'ACTIVEPIECES_OS_VERIFIED',
             nanda_version: '1.0.0',

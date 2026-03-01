@@ -1,17 +1,27 @@
 
 import { FastifyBaseLogger } from 'fastify'
 import { ActionBase, PiecePropertyMap, Property, PropertyType } from '@activepieces/pieces-framework'
-import { isNil } from '@activepieces/shared'
+import { apId, isNil } from '@activepieces/shared'
+import { repoFactory } from '../core/db/repo-factory'
+import { VirtualToolEntity } from './virtual-tool-entity'
+import dayjs from 'dayjs'
 
-export type BlendedTool = {
-    id: string
-    name: string
-    description: string
-    baseActions: { pieceName: string, actionName: string }[]
-    ruleSets: any[] // Guido-inspired rules
-}
+const repo = repoFactory(VirtualToolEntity)
 
 export const virtualToolService = (logger: FastifyBaseLogger) => ({
+    async create(data: any) {
+        return repo().save({
+            id: apId(),
+            created: dayjs().toISOString(),
+            updated: dayjs().toISOString(),
+            ...data
+        })
+    },
+
+    async listByMcpId(mcpId: string) {
+        return repo().find({ where: { mcpId } })
+    },
+
     async blendActions(name: string, description: string, actions: ActionBase[]): Promise<ActionBase> {
         // Aggregate properties from all actions
         const blendedProps: PiecePropertyMap = {}

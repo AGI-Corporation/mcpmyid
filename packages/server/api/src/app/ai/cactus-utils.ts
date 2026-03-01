@@ -74,6 +74,12 @@ export function inferParamRole(paramName: string, pinfo: any): SemanticRole {
 
 const TIME_RE = /(\d{1,2})(?::(\d{2}))?\s*(am|pm)\b/i;
 const DURATION_RE = /(\d+)\s*(?:minutes?|mins?)\b/i;
+const LOCATION_RE = /(?:in|at|for)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)/;
+const PERSON_RE = /(?:to|send|contact)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)/;
+const MESSAGE_RE = /(?:saying|message|body|text)\s+["']?([^"']+)["']?/;
+const TITLE_RE = /(?:title|note|task|reminder)\s+["']?([^"']+)["']?/;
+const SONG_RE = /(?:play|song|track)\s+["']?([^"']+)["']?/;
+const QUERY_RE = /(?:search|find|query)\s+["']?([^"']+)["']?/;
 
 export function extractForRole(role: SemanticRole, text: string): any {
     switch (role) {
@@ -100,7 +106,30 @@ export function extractForRole(role: SemanticRole, text: string): any {
             if (!m) return null;
             return `${m[1]}:${m[2] || '00'} ${m[3].toUpperCase()}`;
         }
-        // Add more role extractions as needed (Location, Person, etc via similar patterns)
+        case SemanticRole.LOCATION: {
+            const m = text.match(LOCATION_RE);
+            return m ? m[1] : null;
+        }
+        case SemanticRole.PERSON: {
+            const m = text.match(PERSON_RE);
+            return m ? m[1] : null;
+        }
+        case SemanticRole.MESSAGE: {
+            const m = text.match(MESSAGE_RE);
+            return m ? m[1] : null;
+        }
+        case SemanticRole.TITLE: {
+            const m = text.match(TITLE_RE);
+            return m ? m[1] : null;
+        }
+        case SemanticRole.SONG: {
+            const m = text.match(SONG_RE);
+            return m ? m[1] : null;
+        }
+        case SemanticRole.QUERY: {
+            const m = text.match(QUERY_RE);
+            return m ? m[1] : null;
+        }
         default:
             return null;
     }

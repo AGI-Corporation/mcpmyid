@@ -3,9 +3,12 @@ import { FastifyPluginAsyncTypebox, Type } from '@fastify/type-provider-typebox'
 import { StatusCodes } from 'http-status-codes'
 import { entitiesMustBeOwnedByCurrentProject } from '../authentication/authorization'
 import { mcpService } from './mcp-service'
+import { virtualToolService } from './virtual-tool-service'
+import { httpClient, HttpMethod } from '../helper/http/axios-client'
 
 export const mcpServerController: FastifyPluginAsyncTypebox = async (app) => {
 
+    app.addHook('preHandler', entitiesMustBeOwnedByCurrentProject)
     app.addHook('preSerialization', entitiesMustBeOwnedByCurrentProject)
     
     app.get('/', GetMcpsRequest, async (req) => {
@@ -52,19 +55,46 @@ export const mcpServerController: FastifyPluginAsyncTypebox = async (app) => {
     })
 
     app.post('/:id/blended-tools', CreateBlendedToolRequest, async (req) => {
-        // Implementation for saving user-created blended tools
-        return {
-            status: 'CREATED',
-            name: req.body.name,
-            id: apId(),
-        }
+        const mcpId = req.params.id
+        const { name, description, baseActions, ruleSets } = req.body
+
+        return virtualToolService(req.log).create({
+            mcpId,
+            name,
+            description,
+            baseActions,
+            ruleSets: ruleSets ?? [],
+        })
     })
 
     app.post('/:id/openapi-import', ImportOpenApiRequest, async (req) => {
-        // Prototype for importing OpenAPI specs as MCP tools
+        await mcpService(req.log).getOrThrow({ mcpId: req.params.id })
+        const mcpId = req.params.id
+        const { url } = req.body
+        const response = await httpClient.sendRequest({
+            method: HttpMethod.GET,
+            url,
+        })
+
+        const tools = await virtualToolService(req.log).createToolsFromOpenApi(response.body)
+
+        const savedTools = await Promise.all(tools.map(t =>
+            virtualToolService(req.log).create({
+                mcpId,
+                name: t.name,
+                description: t.description,
+                baseActions: [], // Imported tools carry their own logic in 'run'
+                ruleSets: [],
+            })
+        ))
+
         return {
-            status: 'IMPORT_STARTED',
-            specUrl: req.body.url,
+            status: 'IMPORT_COMPLETED',
+            toolsCount: savedTools.length,
+            tools: savedTools.map(t => ({
+                id: t.id,
+                name: t.name,
+            }))
         }
     })
 }
