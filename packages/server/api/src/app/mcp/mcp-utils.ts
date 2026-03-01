@@ -30,8 +30,9 @@ export function mcpPropertyToZod(property: McpProperty): z.ZodTypeAny {
             schema = z.unknown()
     }
 
-    if (property.description) {
-        schema = schema.describe(property.description)
+    const description = property.description
+    if (description) {
+        schema = schema.describe(description)
     }
 
     return property.required ? schema : schema.optional()
@@ -63,6 +64,7 @@ export function piecePropertyToZod(property: PieceProperty): z.ZodTypeAny {
             schema = z.array(z.string())
             break
         case PropertyType.DROPDOWN:
+        case PropertyType.STATIC_DROPDOWN:
             schema = z.string()
             break
         default:
@@ -73,8 +75,9 @@ export function piecePropertyToZod(property: PieceProperty): z.ZodTypeAny {
         schema = schema.default(property.defaultValue)
     }
 
-    if (property.description) {
-        schema = schema.describe(property.description)
+    const description = property.aiDescription || property.description
+    if (description) {
+        schema = schema.describe(description)
     }
 
     return property.required ? schema : schema.optional()

@@ -59,7 +59,7 @@ export async function createMcpServer({
             
             server.tool(
                 actionName,
-                action.description,
+                action.aiDescription || action.description,
                 Object.fromEntries(
                     Object.entries(action.props).filter(([_key, prop]) => 
                         prop.type !== PropertyType.MARKDOWN,
