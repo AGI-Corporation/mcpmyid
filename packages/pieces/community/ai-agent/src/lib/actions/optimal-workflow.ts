@@ -22,6 +22,11 @@ export const optimalWorkflowAction = createAction({
     }),
     plugin_url: Property.MarkDown({
         value: "### 🧩 Agent Plugin Link\nTo use this agent as a plugin in other NANDA-compliant tools, copy the URL below:\n\n`{{SYSTEM_URL}}/.well-known/agent.json?token=YOUR_MCP_TOKEN`"
+    }),
+    blended_tool_config: Property.Json({
+        displayName: "Virtual Tool Definition",
+        description: "Define a blended tool by mapping multiple actions. Example: [{ 'piece': 'gmail', 'action': 'send_email' }]",
+        required: false,
     })
   },
   async run(context) {
