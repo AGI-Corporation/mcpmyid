@@ -59,6 +59,14 @@ export const mcpServerController: FastifyPluginAsyncTypebox = async (app) => {
             id: apId(),
         }
     })
+
+    app.post('/:id/openapi-import', ImportOpenApiRequest, async (req) => {
+        // Prototype for importing OpenAPI specs as MCP tools
+        return {
+            status: 'IMPORT_STARTED',
+            specUrl: req.body.url,
+        }
+    })
 }
 
 const GetMcpsRequest = {
@@ -72,6 +80,26 @@ const GetMcpsRequest = {
         querystring: ListMcpsRequest,
         response: {
             [StatusCodes.OK]: SeekPage(McpWithPieces),
+        },
+    },
+}
+
+const ImportOpenApiRequest = {
+    config: {
+        allowedPrincipals: ALL_PRINCIPAL_TYPES,
+    },
+    schema: {
+        tags: ['mcp'],
+        description: 'Import tools from an OpenAPI specification',
+        security: [SERVICE_KEY_SECURITY_OPENAPI],
+        params: Type.Object({
+            id: ApId,
+        }),
+        body: Type.Object({
+            url: Type.String(),
+        }),
+        response: {
+            [StatusCodes.OK]: Type.Any(),
         },
     },
 }
