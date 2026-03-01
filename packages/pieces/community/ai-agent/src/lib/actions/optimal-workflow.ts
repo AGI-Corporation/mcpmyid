@@ -14,6 +14,11 @@ export const optimalWorkflowAction = createAction({
         displayName: "Model Name",
         required: true,
         defaultValue: "gpt-4o"
+    }),
+    nanda_index: Property.ShortText({
+        displayName: "NANDA Index URL",
+        description: "The URL of the decentralized NANDA index for tool discovery",
+        required: false,
     })
   },
   async run(context) {
