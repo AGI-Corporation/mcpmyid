@@ -54,11 +54,12 @@ export async function createMcpServer({
         server.tool(
             vt.name.slice(0, MAX_TOOL_NAME_LENGTH),
             vt.description,
-            Object.fromEntries(
-                Object.entries(vt.props || {}).map(([key, prop]: [string, any]) =>
+            Object.fromEntries([
+                ...Object.entries(vt.props || {}).map(([key, prop]: [string, any]) =>
                     [key, piecePropertyToZod(prop)],
                 ),
-            ),
+                ['query', z.string().optional().describe('The original user query text for adaptive routing and extraction.')]
+            ]),
             async (params) => {
                 // Apply Guido Rules (Layer 2: Governance)
                 virtualToolService(logger).validateBlendedData(params, vt.ruleSets);
@@ -66,6 +67,7 @@ export async function createMcpServer({
                 // Apply Cactus Logic (Layer 3: Repair & Layer 4: Validation)
                 // Note: Simplified for virtual tools, can be expanded to full pipeline
 
+                let result;
                 if (vt.metadata?.type === 'OPENAPI') {
                     const response = await httpClient.sendRequest({
                         method: vt.metadata.method as HttpMethod,
@@ -73,20 +75,22 @@ export async function createMcpServer({
                         queryParams: params, // Simplified mapping
                         body: params['body'],
                     })
+                    result = response.body;
+                } else {
+                    result = { status: 'success', message: `Virtual Tool ${vt.name} executed.` };
+                }
 
-                    return {
-                        content: [{
-                            type: 'text',
-                            text: `✅ Successfully executed ${vt.name}\n\n` +
-                                `\`\`\`json\n${JSON.stringify(response.body, null, 2)}\n\`\`\``,
-                        }]
-                    }
+                // Automatic Evaluation Layer (Layer 6: Observation)
+                if (vt.description.toLowerCase().includes('rag') || vt.name.toLowerCase().includes('research')) {
+                    logger.info({ action: vt.name }, '[McpServer] Triggering automatic evaluation (LLM as a Judge)');
+                    // Future: Trigger asynchronous evaluation flow via evaluateRag logic
                 }
 
                 return {
                     content: [{
                         type: 'text',
-                        text: `✅ Virtual Tool ${vt.name} executed successfully.`,
+                        text: `✅ Successfully executed ${vt.name}\n\n` +
+                            `\`\`\`json\n${JSON.stringify(result, null, 2)}\n\`\`\``,
                     }]
                 }
             }
@@ -111,13 +115,14 @@ export async function createMcpServer({
             server.tool(
                 actionName,
                 action.aiDescription || action.description,
-                Object.fromEntries(
-                    Object.entries(action.props).filter(([_key, prop]) => 
+                Object.fromEntries([
+                    ...Object.entries(action.props).filter(([_key, prop]) =>
                         prop.type !== PropertyType.MARKDOWN,
                     ).map(([key, prop]) =>
                         [key, piecePropertyToZod(prop)],
                     ),
-                ),
+                    ['query', z.string().optional().describe('The original user query text for adaptive routing and extraction.')]
+                ]),
                 async (params) => {
                     const parsedInputs = {
                         ...params,

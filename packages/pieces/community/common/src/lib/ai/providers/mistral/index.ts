@@ -20,6 +20,7 @@ export const mistral: AIFactory = ({ proxyUrl, engineToken }): AI => {
                         temperature: params.creativity,
                         max_tokens: params.maxTokens,
                         stop: params.stop,
+                        response_format: { type: 'text' }
                     },
                 });
 
@@ -92,4 +93,5 @@ export const mistralModels = [
     model({ label: 'Mistral Large', value: 'mistral-large-latest', supported: ['text', 'function'] }),
     model({ label: 'Mistral Small', value: 'mistral-small-latest', supported: ['text', 'function'] }),
     model({ label: 'Codestral', value: 'codestral-latest', supported: ['text'] }),
+    model({ label: 'Pixtral Large', value: 'pixtral-large-latest', supported: ['text', 'function'] }),
 ];

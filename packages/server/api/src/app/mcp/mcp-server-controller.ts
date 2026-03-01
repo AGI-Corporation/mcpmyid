@@ -68,7 +68,7 @@ export const mcpServerController: FastifyPluginAsyncTypebox = async (app) => {
     })
 
     app.post('/:id/openapi-import', ImportOpenApiRequest, async (req) => {
-        await mcpService(req.log).getOrThrow({ mcpId: req.params.id })
+        const mcp = await mcpService(req.log).getOrThrow({ mcpId: req.params.id })
         const mcpId = req.params.id
         const { url } = req.body
 

@@ -2,7 +2,7 @@ import {
   createAction,
   Property,
 } from '@activepieces/pieces-framework';
-import { AI, AIChatRole } from '@activepieces/pieces-common';
+import { AIChatRole, AuthenticationType, HttpMethod, httpClient } from '@activepieces/pieces-common';
 
 export const evaluateRag = createAction({
   name: 'evaluate_rag',
@@ -53,21 +53,40 @@ Groundedness: How faithful is the generated answer to the retrieved context?`;
 
     const userContent = `Query: ${query}\nRetrieved Context: ${retrieved_context}\nGenerated Answer: ${generated_answer}`;
 
-    // Note: In a real production scenario, we would use .parse() if the SDK supported it natively
-    // or provide a JSON schema in the prompt to ensure structured output.
-    const response = await ai.chat.text({
-        model: model,
-        messages: [
-            { role: AIChatRole.SYSTEM, content: systemPrompt },
-            { role: AIChatRole.USER, content: userContent }
-        ],
-        creativity: 0,
+    // Use the native Mistral provider with forced JSON structure for precise evaluation
+    const response = await httpClient.sendRequest<any>({
+        method: HttpMethod.POST,
+        url: `${context.server.apiUrl}v1/ai-providers/proxy/mistral/chat/completions`,
+        authentication: {
+            type: AuthenticationType.BEARER_TOKEN,
+            token: context.server.token,
+        },
+        body: {
+            model: model,
+            messages: [
+                { role: AIChatRole.SYSTEM, content: systemPrompt },
+                { role: AIChatRole.USER, content: userContent }
+            ],
+            temperature: 0,
+            response_format: { type: 'json_object' }
+        },
     });
 
-    return {
-        evaluation: response.choices[0].content,
-        status: "EVALUATED",
-        judge: "Mistral AI"
-    };
+    const content = response.body.choices[0].message.content;
+
+    try {
+        const parsed = JSON.parse(content);
+        return {
+            ...parsed,
+            status: "EVALUATED",
+            judge: "Mistral AI"
+        };
+    } catch (e) {
+        return {
+            raw_evaluation: content,
+            status: "EVALUATED_RAW",
+            judge: "Mistral AI"
+        };
+    }
   },
 });

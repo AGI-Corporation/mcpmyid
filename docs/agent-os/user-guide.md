@@ -43,6 +43,14 @@ Every Agent OS project has a unique **Discovery Token**.
 - Use this token to register your agent in external indexes or to share it with your team.
 - If your token is compromised, use the **Rotate Token** button to instantly invalidate the old one.
 
-## 5. Mistral Optimization
+## 5. Mistral Optimization & Evaluation
 
-If you are using Mistral AI, Agent OS automatically enables **Native Tooling**. This ensures that Mistral's advanced reasoning is used to select the correct Activepieces tool with minimal latency.
+If you are using Mistral AI, Agent OS automatically enables **Native Tooling** and advanced **Evaluation Actions**.
+
+### RAG Evaluation Metrics:
+- **Context Relevance**: Did the system retrieve information that actually answers the question?
+- **Answer Relevance**: Is the final answer helpful and on-point?
+- **Groundedness**: Is the answer factually supported by the retrieved context, or did the model hallucinate?
+
+### Hallucination Detection:
+Use the **Mistral Hallucination Detection** action in your flows to verify specific claims against a source of truth. It returns a structured report indicating which parts of an answer are supported and which are potentially fabricated.
