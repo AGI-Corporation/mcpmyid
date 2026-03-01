@@ -65,8 +65,8 @@ export function generateTheme({
 
 export const defaultTheme = generateTheme({
     primaryColor: '#6e41e2',
-    websiteName: 'Activepieces',
-    fullLogoUrl: 'https://cdn.activepieces.com/brand/full-logo.png',
-    favIconUrl: 'https://cdn.activepieces.com/brand/favicon.ico',
-    logoIconUrl: 'https://cdn.activepieces.com/brand/logo.svg',
+    websiteName: 'MCP.My.ID',
+    fullLogoUrl: 'https://www.mcp.my.id/logo.png',
+    favIconUrl: 'https://www.mcp.my.id/favicon.ico',
+    logoIconUrl: 'https://www.mcp.my.id/logo.svg',
 })

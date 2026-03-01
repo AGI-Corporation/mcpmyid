@@ -34,7 +34,7 @@ export const HelpAndFeedback = () => {
       <DropdownMenuContent align="start" side="right" className="w-[220px]">
         <DropdownMenuItem asChild>
           <Link
-            to="https://activepieces.com/docs"
+            to="https://www.mcp.my.id/docs"
             target="_blank"
             rel="noopener noreferrer"
             className="flex justify-between w-full"

@@ -235,6 +235,9 @@ export const useTimeAgo = (date: Date) => {
 export const determineDefaultRoute = (
   checkAccess: (permission: Permission) => boolean,
 ) => {
+  if (checkAccess(Permission.READ_MCP)) {
+    return authenticationSession.appendProjectRoutePrefix('/mcp');
+  }
   if (checkAccess(Permission.READ_FLOW)) {
     return authenticationSession.appendProjectRoutePrefix('/flows');
   }

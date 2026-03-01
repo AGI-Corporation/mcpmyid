@@ -155,13 +155,13 @@ export const flagService = {
             },
             {
                 id: ApFlagId.PRIVACY_POLICY_URL,
-                value: 'https://www.activepieces.com/privacy',
+                value: 'https://www.mcp.my.id/privacy',
                 created,
                 updated,
             },
             {
                 id: ApFlagId.TERMS_OF_SERVICE_URL,
-                value: 'https://www.activepieces.com/terms',
+                value: 'https://www.mcp.my.id/terms',
                 created,
                 updated,
             },
