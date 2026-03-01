@@ -49,9 +49,9 @@ export function estimateDifficulty(query: string, toolCount: number): Difficulty
     return Difficulty.MEDIUM;
 }
 
-export function inferParamRole(paramName: string, description?: string): SemanticRole {
+export function inferParamRole(paramName: string, pinfo: any): SemanticRole {
     const name = paramName.toLowerCase();
-    const desc = (description || '').toLowerCase();
+    const desc = (pinfo.aiDescription || pinfo.description || '').toLowerCase();
 
     if (name.includes('recipient') || name.includes('person') || name.includes('contact')) return SemanticRole.PERSON;
     if (name === 'name' && (desc.includes('person') || desc.includes('contact'))) return SemanticRole.PERSON;
@@ -109,11 +109,10 @@ export function extractForRole(role: SemanticRole, text: string): any {
 export function deterministicExtract(action: ActionBase, userQuery: string): Record<string, any> | null {
     const args: Record<string, any> = {};
     const props = action.props as PiecePropertyMap;
-    const required = (action as any).required || []; // ActionBase might not have required directly if it's from PiecePropertyMap
 
     let foundAny = false;
     for (const [pname, pinfo] of Object.entries(props)) {
-        const role = inferParamRole(pname, pinfo.description);
+        const role = inferParamRole(pname, pinfo);
         const extracted = extractForRole(role, userQuery);
         if (!isNil(extracted)) {
             args[pname] = extracted;
@@ -136,7 +135,7 @@ export function repairOutput(action: ActionBase, args: Record<string, any>, user
     const props = action.props as PiecePropertyMap;
 
     for (const [pname, pinfo] of Object.entries(props)) {
-        const role = inferParamRole(pname, pinfo.description);
+        const role = inferParamRole(pname, pinfo);
 
         // AM/PM Correction
         if (role === SemanticRole.HOUR && !isNil(repaired[pname])) {
@@ -172,7 +171,7 @@ export function semanticValidate(action: ActionBase, args: Record<string, any>, 
     for (const [pname, pinfo] of Object.entries(props)) {
         if (isNil(args[pname])) continue;
 
-        const role = inferParamRole(pname, pinfo.description);
+        const role = inferParamRole(pname, pinfo);
         const val = args[pname];
 
         // Basic hallucination check: only if a non-empty user query is provided
