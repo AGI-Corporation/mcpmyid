@@ -99,7 +99,7 @@ When you contribute pieces to Activepieces they become automatically available a
 - [x] **Agent OS Core**: Powered by **CactusRoute** (Adaptive Routing) & **Guido** (Rule Engine).
 - [x] **Decentralized Discovery**: Native **NANDA Protocol** support via `/.well-known/agent.json`.
 - [x] **OpenAPI Import**: Automatically generate MCP tools from OpenAPI specs (inspired by `mcp-generator-2.0`).
-- [x] **Mistral AI**: Deep, native integration for high-performance agentic workflows.
+- [x] **Mistral AI**: Deep, native integration for high-performance agentic workflows and **LLM-as-a-Judge** evaluation.
 
 **We release updates frequently. Check the product changelog for the latest features.**
 
@@ -195,6 +195,7 @@ sequenceDiagram
 ### 🌬️ Mistral & OpenAI Optimization
 Agent OS comes with native optimization for the world's best models.
 - **Mistral Native Tooling**: Optimized mappings for `mistral-large-latest`.
+- **LLM as a Judge**: Built-in evaluation actions for RAG outputs (Mistral-powered).
 - **OpenAPI Auto-Generator**: Import any `.json` or `.yaml` OpenAPI spec and instantly generate optimized MCP tools (powered by our `mcp-generator-2.0` logic).
 
 [Read the full Agent OS Documentation Hub](docs/agent-os/about.md)

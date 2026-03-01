@@ -37,6 +37,7 @@ Inspired by the **Guido** configuration manager, users can now build high-level 
 ### 4. Multi-Model Tooling (Mistral & Beyond)
 Deep integration with leading AI providers to ensure maximum compatibility:
 - **Mistral Native Tooling**: Optimized support for Mistral Large, Small, and Codestral.
+- **Evaluation Loop**: Integrated **LLM-as-a-Judge** using Mistral's structured outputs to ensure RAG groundedness and relevance.
 - **OpenAPI Auto-Import**: Dynamically generate MCP tools from any OpenAPI specification (inspired by `mcp-generator-2.0`).
 
 ## 🧩 New Framework Components

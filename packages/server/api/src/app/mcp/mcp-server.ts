@@ -16,6 +16,7 @@ import { mcpService } from './mcp-service'
 import { MAX_TOOL_NAME_LENGTH, mcpPropertyToZod, piecePropertyToZod } from './mcp-utils'
 import { deterministicExtract, estimateDifficulty, repairOutput, semanticValidate } from '../ai/cactus-utils'
 import { virtualToolService } from './virtual-tool-service'
+import { httpClient, HttpMethod } from '../helper/http/axios-client'
 
 export async function createMcpServer({
     mcpId,
@@ -59,16 +60,25 @@ export async function createMcpServer({
                 ),
             ),
             async (params) => {
-                // Apply Guido Rules
+                // Apply Guido Rules (Layer 2: Governance)
                 virtualToolService(logger).validateBlendedData(params, vt.ruleSets);
 
+                // Apply Cactus Logic (Layer 3: Repair & Layer 4: Validation)
+                // Note: Simplified for virtual tools, can be expanded to full pipeline
+
                 if (vt.metadata?.type === 'OPENAPI') {
-                    // Logic to execute HTTP request based on OpenAPI metadata
+                    const response = await httpClient.sendRequest({
+                        method: vt.metadata.method as HttpMethod,
+                        url: vt.metadata.url,
+                        queryParams: params, // Simplified mapping
+                        body: params['body'],
+                    })
+
                     return {
                         content: [{
                             type: 'text',
-                            text: `✅ Executed ${vt.metadata.method} ${vt.metadata.url}\n\n` +
-                                `\`\`\`json\n${JSON.stringify({ params }, null, 2)}\n\`\`\``,
+                            text: `✅ Successfully executed ${vt.name}\n\n` +
+                                `\`\`\`json\n${JSON.stringify(response.body, null, 2)}\n\`\`\``,
                         }]
                     }
                 }

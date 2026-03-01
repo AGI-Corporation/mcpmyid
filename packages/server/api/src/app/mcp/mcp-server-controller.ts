@@ -72,9 +72,14 @@ export const mcpServerController: FastifyPluginAsyncTypebox = async (app) => {
         const mcpId = req.params.id
         const { url } = req.body
 
-        // Basic SSRF protection
-        if (!url.startsWith('http')) {
+        // SSRF protection
+        const forbiddenHosts = ['localhost', '127.0.0.1', 'metadata.google.internal', '169.254.169.254'];
+        const parsedUrl = new URL(url);
+        if (!['http:', 'https:'].includes(parsedUrl.protocol)) {
             throw new Error('Invalid URL protocol');
+        }
+        if (forbiddenHosts.some(h => parsedUrl.hostname.includes(h))) {
+            throw new Error('Forbidden host');
         }
 
         const response = await httpClient.sendRequest({

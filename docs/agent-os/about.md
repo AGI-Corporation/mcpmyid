@@ -24,6 +24,9 @@ Users can "blend" multiple low-level pieces into high-level "Virtual Tools." The
 ### 🌬️ 4. Multi-Model Optimization (Mistral & Beyond)
 While we support all major providers, Agent OS is deeply optimized for Mistral AI, leveraging its native tool-calling capabilities to deliver low-latency, high-accuracy agentic workflows.
 
+### ⚖️ 5. LLM as a Judge (Evaluation Layer)
+Using Mistral-powered evaluation, Agent OS automatically scores RAG (Retrieval-Augmented Generation) outputs for context relevance, answer relevance, and groundedness. This ensures your agents aren't just "fast," but "accurate."
+
 ## Why Research-Backed?
 Every feature in Agent OS is grounded in peer-reviewed AI research (from ODIA to STEER). We don't just build features; we implement proven techniques to maximize the **F1 score** and **On-Device Ratio** of your AI integrations.
 

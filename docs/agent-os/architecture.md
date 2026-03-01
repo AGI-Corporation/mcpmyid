@@ -43,7 +43,24 @@ sequenceDiagram
     Agent->>AP: MCP Tool Call (Cactus-Optimized)
 ```
 
-## 3. Virtual Tool Orchestration (Guido)
+## 3. The Evaluation Loop (LLM as a Judge)
+
+Agent OS includes a built-in evaluation layer to ensure the quality of RAG-based tool executions.
+
+```mermaid
+graph LR
+    Task[Agent Task] --> Exec[Execute Tool]
+    Exec --> Result[Generate Answer]
+    Result --> Eval{Mistral Judge}
+    Eval --> CR[Context Relevance]
+    Eval --> AR[Answer Relevance]
+    Eval --> G[Groundedness]
+    CR --> Feedback[Feedback to Strategic Agent]
+    AR --> Feedback
+    G --> Feedback
+```
+
+## 4. Virtual Tool Orchestration (Guido)
 
 The Guido rule engine allows for the composition of complex, safe interfaces.
 
