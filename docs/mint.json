@@ -292,8 +292,12 @@
       ]
     },
     {
-      "group": "AI",
+      "group": "Agent OS",
       "pages": [
+        "agent-os/about",
+        "agent-os/quickstart",
+        "agent-os/architecture",
+        "agent-os/user-guide",
         "ai/mcp"
       ]
     },

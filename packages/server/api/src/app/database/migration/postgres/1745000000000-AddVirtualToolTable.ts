@@ -14,6 +14,7 @@ export class AddVirtualToolTable1745000000000 implements MigrationInterface {
                 "description" character varying NOT NULL,
                 "baseActions" jsonb NOT NULL,
                 "ruleSets" jsonb NOT NULL DEFAULT '[]',
+                "metadata" jsonb,
                 "status" character varying DEFAULT 'ENABLED' NOT NULL,
                 CONSTRAINT "pk_virtual_tool" PRIMARY KEY ("id"),
                 CONSTRAINT "fk_virtual_tool_mcp_id" FOREIGN KEY ("mcpId") REFERENCES "mcp"("id") ON DELETE CASCADE ON UPDATE NO ACTION

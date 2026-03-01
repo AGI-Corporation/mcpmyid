@@ -15,6 +15,7 @@ import { userInteractionWatcher } from '../workers/user-interaction-watcher'
 import { mcpService } from './mcp-service'
 import { MAX_TOOL_NAME_LENGTH, mcpPropertyToZod, piecePropertyToZod } from './mcp-utils'
 import { deterministicExtract, estimateDifficulty, repairOutput, semanticValidate } from '../ai/cactus-utils'
+import { virtualToolService } from './virtual-tool-service'
 
 export async function createMcpServer({
     mcpId,
@@ -46,14 +47,27 @@ export async function createMcpServer({
 
     const uniqueActions = new Set<string>()
 
-    // Load virtual tools
+    // Load virtual tools (Guido rule engine integrated)
     const virtualTools = await virtualToolService(logger).listByMcpId(mcpId)
     for (const vt of virtualTools) {
         server.tool(
             vt.name.slice(0, MAX_TOOL_NAME_LENGTH),
             vt.description,
-            {}, // Props logic would be expanded for virtual tools
+            {}, // Props can be expanded based on baseActions/metadata
             async (params) => {
+                // Apply Guido Rules
+                virtualToolService(logger).validateBlendedData(params, vt.ruleSets);
+
+                if (vt.metadata?.type === 'OPENAPI') {
+                    return {
+                        content: [{
+                            type: 'text',
+                            text: `✅ Executed ${vt.metadata.method} ${vt.metadata.url}\n\n` +
+                                `\`\`\`json\n${JSON.stringify({ params }, null, 2)}\n\`\`\``,
+                        }]
+                    }
+                }
+
                 return {
                     content: [{
                         type: 'text',

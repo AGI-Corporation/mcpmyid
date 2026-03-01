@@ -6,6 +6,17 @@ Welcome to the **Activepieces Agent OS**, a research-backed framework designed t
 
 ### 1. Cactus-Optimized Execution (Adaptive Routing)
 Based on the **CactusRoute** 7-layer framework, every tool call in Activepieces is now optimized for the most reliable agentic experience:
+
+```mermaid
+graph LR
+    Query[User Query] --> Cactus{Cactus Adaptive Layer}
+    Cactus --> L1[Difficulty]
+    Cactus --> L3[Repair]
+    Cactus --> L4[Guardrails]
+    Cactus --> L7[Extraction]
+    L7 --> Exec[Piece Action]
+```
+
 - **Layer 1: Difficulty Estimation**: Automatically assesses query complexity to route to the most efficient model.
 - **Layer 3: Adaptive Repair**: Auto-corrects common LLM mistakes like time formats and negative numbers.
 - **Layer 4: Semantic Guardrails**: Real-time hallucination detection by cross-checking prompts against parameters.

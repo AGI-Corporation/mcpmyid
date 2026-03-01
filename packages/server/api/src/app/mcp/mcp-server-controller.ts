@@ -83,8 +83,9 @@ export const mcpServerController: FastifyPluginAsyncTypebox = async (app) => {
                 mcpId,
                 name: t.name,
                 description: t.description,
-                baseActions: [], // Imported tools carry their own logic in 'run'
+                baseActions: [],
                 ruleSets: [],
+                metadata: t.metadata,
             })
         ))
 

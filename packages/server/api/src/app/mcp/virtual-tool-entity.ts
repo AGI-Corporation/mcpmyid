@@ -12,6 +12,7 @@ export type VirtualTool = {
     baseActions: { pieceName: string, actionName: string }[]
     ruleSets: any[]
     status: McpPieceStatus
+    metadata?: any
 }
 
 export const VirtualToolEntity = new EntitySchema<VirtualTool>({
@@ -38,6 +39,10 @@ export const VirtualToolEntity = new EntitySchema<VirtualTool>({
             type: 'jsonb',
             nullable: false,
             default: [],
+        },
+        metadata: {
+            type: 'jsonb',
+            nullable: true,
         },
         status: {
             type: String,
