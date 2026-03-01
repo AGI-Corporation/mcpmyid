@@ -19,6 +19,9 @@ export const optimalWorkflowAction = createAction({
         displayName: "NANDA Index URL",
         description: "The URL of the decentralized NANDA index for tool discovery",
         required: false,
+    }),
+    plugin_url: Property.MarkDown({
+        value: "### 🧩 Agent Plugin Link\nTo use this agent as a plugin in other NANDA-compliant tools, copy the URL below:\n\n`{{SYSTEM_URL}}/.well-known/agent.json?token=YOUR_MCP_TOKEN`"
     })
   },
   async run(context) {

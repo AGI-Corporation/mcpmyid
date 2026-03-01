@@ -20,6 +20,22 @@ export const nandaController: FastifyPluginAsyncTypebox = async (fastify) => {
         },
     )
 
+    // Standardized NANDA discovery path (alias)
+    fastify.get(
+        '/.well-known/agent.json',
+        {
+            schema: {
+                querystring: Type.Object({
+                    token: Type.String(),
+                }),
+            },
+        },
+        async (request) => {
+            const mcp = await mcpService(request.log).getByToken({ token: request.query.token })
+            return nandaManifestService(request.log).generateManifest(mcp.id)
+        },
+    )
+
     fastify.post(
         '/announce',
         {

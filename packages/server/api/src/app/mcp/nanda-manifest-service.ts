@@ -42,15 +42,31 @@ export const nandaManifestService = (logger: FastifyBaseLogger) => ({
         }))
 
         return {
-            nanda_version: '1.0.0',
-            agent_id: `activepieces_project_${projectId}`,
-            trust_anchor: 'ACTIVEPIECES_OS',
-            capabilities,
-            discovery_url: `{{SYSTEM_URL}}/api/v1/nanda/discover?token=${mcp.token}`,
+            '@context': [
+                'https://www.w3.org/ns/credentials/v2',
+                'https://projectnanda.org/context/agent-facts/v1'
+            ],
+            id: `urn:uuid:${projectId}`,
+            type: 'AgentFacts',
+            agentName: `Activepieces Project ${projectId}`,
+            ttl: 3600,
+            endpoints: [
+                {
+                    type: 'MCP_SSE',
+                    uri: `{{SYSTEM_URL}}/api/v1/mcp/messages?token=${mcp.token}`,
+                    priority: 1
+                }
+            ],
+            usageFormat: {
+                protocol: 'MCP/NANDA-1.0',
+                capabilities,
+            },
             governance: {
                 data_retention: 'ZERO_RETENTION_PREFERENCE',
                 human_in_loop: 'REQUIRED_FOR_SENSITIVE',
-            }
+            },
+            trust_anchor: 'ACTIVEPIECES_OS_VERIFIED',
+            nanda_version: '1.0.0',
         }
     }
 })
