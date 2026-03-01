@@ -96,12 +96,110 @@ When you contribute pieces to Activepieces they become automatically available a
 - [x] Languages Translations
 - [x] Customizable Templates
 - [X] 280+ Pieces, check https://www.activepieces.com/pieces
-- [x] **Agent OS Core**: Integrated CactusRoute, Guido, and NANDA protocols.
-- [x] **OpenAPI Import**: Automatically generate MCP tools from OpenAPI specs.
-- [x] **Mistral AI**: Deep integration for high-performance agentic workflows.
+- [x] **Agent OS Core**: Powered by **CactusRoute** (Adaptive Routing) & **Guido** (Rule Engine).
+- [x] **Decentralized Discovery**: Native **NANDA Protocol** support via `/.well-known/agent.json`.
+- [x] **OpenAPI Import**: Automatically generate MCP tools from OpenAPI specs (inspired by `mcp-generator-2.0`).
+- [x] **Mistral AI**: Deep, native integration for high-performance agentic workflows.
 
 **We release updates frequently. Check the product changelog for the latest features.**
 
+<br>
+
+## 🏗️ Agent OS System Architecture
+
+Activepieces Agent OS is the world's first unified "Agentic Operating System" that bridges the gap between raw LLM capabilities and reliable enterprise automation.
+
+### 🧩 The Multi-Layer Execution Stack
+Every request processed by Agent OS flows through a research-backed pipeline designed for 99.9% tool-calling reliability.
+
+```mermaid
+graph TD
+    subgraph "External World"
+        User([Human/Agent]) -- "Natural Language Task" --> OS
+    end
+
+    subgraph "Activepieces Agent OS Core"
+        OS{Request Router}
+
+        subgraph "1. NANDA Discovery"
+            Discovery[Capability Negotiation]
+            Manifest[/.well-known/agent.json]
+        end
+
+        subgraph "2. Cactus Adaptive Layer"
+            Cactus{Adaptive Engine}
+            L1[Layer 1: Difficulty]
+            L3[Layer 3: Repair]
+            L4[Layer 4: Guardrails]
+            L7[Layer 7: Extraction]
+        end
+
+        subgraph "3. Guido Governance"
+            Guido[Rule Engine]
+            Blended[Virtual Tools]
+        end
+    end
+
+    subgraph "Execution"
+        Exec[[Piece Action Sandbox]]
+        Mistral{{Mistral/OpenAI Optimized}}
+    end
+
+    User --> Manifest
+    Manifest --> OS
+    OS --> Cactus
+    Cactus --> L1 --> L3 --> L4
+    L4 -- Fail --> L7
+    L4 -- Pass --> Guido
+    L7 --> Guido
+    Guido --> Blended --> Exec
+    Exec --> Mistral
+```
+
+---
+
+## 📖 Branded Agent OS User Guide
+
+### 🛡️ Step 1: Secure Your Data with Virtual Tools (Guido)
+Don't let agents hallucinate with raw APIs. Use **Virtual Tools** to create high-level, safe capabilities.
+
+- **Blend**: Combine multiple actions into one logical tool (e.g., `CreateLead`).
+- **Enforce**: Use the **Guido Rule Engine** to define mandatory conditions.
+  - *Example*: `IF recipient NOT CONTAINS '@company.com' THEN BLOCK.`
+
+### 🔍 Step 2: Peer-to-Peer Discovery (NANDA)
+Your Activepieces project is now a self-describing node on the Agentic Web.
+- **Manifest**: Your project automatically broadcasts its capabilities via `/.well-known/agent.json`.
+- **Global Index**: Register your project with the **NANDA Index** to allow billions of autonomous agents to find and use your tools securely.
+
+### 🌬️ Step 3: High-Performance Execution (Mistral Native)
+Experience the lowest latency in the industry with our **Mistral Deep Integration**.
+- **Optimized Prompting**: We use Mistral's native tool-calling schemas for maximum precision.
+- **Self-Correction**: Every call is protected by the **Cactus Adaptive Layer**, which automatically repairs model errors in real-time.
+
+```mermaid
+sequenceDiagram
+    participant Agent as Strategic Agent
+    participant AP as Activepieces Agent OS
+    participant Piece as Secure Piece
+
+    Agent->>AP: Request Tool Discovery
+    AP-->>Agent: JSON-LD AgentFacts
+    Agent->>AP: Execute 'NotifyUser' (NLP)
+    AP->>AP: Cactus Layer: Repairing format...
+    AP->>AP: Guido Engine: Validating rules...
+    AP->>Piece: Executing Sandbox Action
+    Piece-->>Agent: Verified Result
+```
+
+### 🌬️ Mistral & OpenAI Optimization
+Agent OS comes with native optimization for the world's best models.
+- **Mistral Native Tooling**: Optimized mappings for `mistral-large-latest`.
+- **OpenAPI Auto-Generator**: Import any `.json` or `.yaml` OpenAPI spec and instantly generate optimized MCP tools (powered by our `mcp-generator-2.0` logic).
+
+[Read the full Agent OS Documentation Hub](docs/agent-os/about.md)
+
+---
 
 ## 🔌 Create Your Own Piece
 

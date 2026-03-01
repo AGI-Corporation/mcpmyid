@@ -26,3 +26,13 @@ While we support all major providers, Agent OS is deeply optimized for Mistral A
 
 ## Why Research-Backed?
 Every feature in Agent OS is grounded in peer-reviewed AI research (from ODIA to STEER). We don't just build features; we implement proven techniques to maximize the **F1 score** and **On-Device Ratio** of your AI integrations.
+
+## Agent OS Overview Diagram
+
+```mermaid
+graph TD
+    A[Autonomous Agents] -->|NANDA Discovery| B(Activepieces Agent OS)
+    B -->|Guido Rules| C{Governance}
+    C -->|Cactus Routing| D[280+ Piece Integrations]
+    D -->|Self-Correction| E[Reliable Task Completion]
+```

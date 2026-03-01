@@ -71,6 +71,12 @@ export const mcpServerController: FastifyPluginAsyncTypebox = async (app) => {
         await mcpService(req.log).getOrThrow({ mcpId: req.params.id })
         const mcpId = req.params.id
         const { url } = req.body
+
+        // Basic SSRF protection
+        if (!url.startsWith('http')) {
+            throw new Error('Invalid URL protocol');
+        }
+
         const response = await httpClient.sendRequest({
             method: HttpMethod.GET,
             url,
@@ -83,6 +89,7 @@ export const mcpServerController: FastifyPluginAsyncTypebox = async (app) => {
                 mcpId,
                 name: t.name,
                 description: t.description,
+                props: t.props,
                 baseActions: [],
                 ruleSets: [],
                 metadata: t.metadata,

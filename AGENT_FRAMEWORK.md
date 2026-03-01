@@ -83,3 +83,39 @@ The Agent OS framework is released under the **MIT License**. We follow the **[C
 - **[Security Policy](docs/agent-os/SECURITY.md)**: AI-specific security guardrails.
 
 By combining robust metadata with adaptive execution and decentralized discovery, Activepieces is now the foundational operating system for the next generation of AI Agents.
+
+## 🏗️ Technical Specification
+
+### Layered Architecture
+Agent OS is architected as a series of nested middleware layers that wrap standard piece execution:
+
+1.  **Metadata Layer**: Enhances TypeBox schemas with `aiDescription` and `examples`.
+2.  **Discovery Layer (NANDA)**: Negotiates capabilities via `/.well-known/agent.json`.
+3.  **Governance Layer (Guido)**: Enforces business logic rules before execution.
+4.  **Adaptive Layer (Cactus)**: Repairs LLM input and provides deterministic fallback.
+5.  **Execution Layer**: Runs the piece action in an isolated sandbox.
+
+### Protocol Interoperability
+Agent OS is designed to be the "TCP/IP" of the agentic web:
+- **MCP**: Tool-use protocol for LLMs.
+- **AgentFacts**: Discovery protocol for federated indexing.
+- **Cactus-Native**: High-reliability execution protocol.
+
+```mermaid
+graph TD
+    subgraph "NANDA Network"
+        Index[NANDA Index]
+        Registry[Verified Trust Anchors]
+    end
+
+    subgraph "Activepieces Agent OS"
+        Manifest[/.well-known/agent.json]
+        Rules[Guido Rule Engine]
+        Cactus[Cactus Adaptive Layer]
+        Sandbox[Action Sandbox]
+    end
+
+    Index <--> Manifest
+    Rules --> Cactus
+    Cactus --> Sandbox
+```

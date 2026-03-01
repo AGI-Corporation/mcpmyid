@@ -13,6 +13,7 @@ export class AddVirtualToolTable1745000000000 implements MigrationInterface {
                 "name" character varying NOT NULL,
                 "description" character varying NOT NULL,
                 "baseActions" jsonb NOT NULL,
+                "props" jsonb NOT NULL DEFAULT '{}',
                 "ruleSets" jsonb NOT NULL DEFAULT '[]',
                 "metadata" jsonb,
                 "status" character varying DEFAULT 'ENABLED' NOT NULL,

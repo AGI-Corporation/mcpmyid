@@ -53,12 +53,17 @@ export async function createMcpServer({
         server.tool(
             vt.name.slice(0, MAX_TOOL_NAME_LENGTH),
             vt.description,
-            {}, // Props can be expanded based on baseActions/metadata
+            Object.fromEntries(
+                Object.entries(vt.props || {}).map(([key, prop]: [string, any]) =>
+                    [key, piecePropertyToZod(prop)],
+                ),
+            ),
             async (params) => {
                 // Apply Guido Rules
                 virtualToolService(logger).validateBlendedData(params, vt.ruleSets);
 
                 if (vt.metadata?.type === 'OPENAPI') {
+                    // Logic to execute HTTP request based on OpenAPI metadata
                     return {
                         content: [{
                             type: 'text',

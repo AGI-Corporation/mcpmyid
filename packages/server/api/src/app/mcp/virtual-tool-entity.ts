@@ -11,6 +11,7 @@ export type VirtualTool = {
     description: string
     baseActions: { pieceName: string, actionName: string }[]
     ruleSets: any[]
+    props: any // The PiecePropertyMap for this virtual tool
     status: McpPieceStatus
     metadata?: any
 }
@@ -34,6 +35,11 @@ export const VirtualToolEntity = new EntitySchema<VirtualTool>({
         baseActions: {
             type: 'jsonb',
             nullable: false,
+        },
+        props: {
+            type: 'jsonb',
+            nullable: false,
+            default: {},
         },
         ruleSets: {
             type: 'jsonb',
