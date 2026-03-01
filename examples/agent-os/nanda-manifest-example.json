@@ -1,0 +1,26 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/credentials/v2",
+    "https://projectnanda.org/context/agent-facts/v1"
+  ],
+  "id": "urn:uuid:activepieces-sample-agent",
+  "type": "AgentFacts",
+  "agentName": "Activepieces CRM Optimizer",
+  "ttl": 3600,
+  "endpoints": [
+    {
+      "type": "MCP_SSE",
+      "uri": "https://activepieces.example.com/api/v1/mcp/messages?token=SAMPLE_TOKEN",
+      "priority": 1
+    }
+  ],
+  "usageFormat": {
+    "protocol": "MCP/NANDA-1.0",
+    "capabilities": ["CRM_LOOKUP", "NOTIFICATION_DISPATCH"]
+  },
+  "governance": {
+    "data_retention": "ZERO_RETENTION_PREFERENCE",
+    "human_in_loop": "REQUIRED_FOR_SENSITIVE"
+  },
+  "trust_anchor": "ACTIVEPIECES_OS_VERIFIED"
+}

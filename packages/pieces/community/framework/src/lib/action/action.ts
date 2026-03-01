@@ -27,6 +27,7 @@ type CreateActionParams<PieceAuth extends PieceAuthProperty, ActionProps extends
   auth?: PieceAuth
   displayName: string
   description: string
+  aiDescription?: string
   props: ActionProps
   run: ActionRunner<PieceAuth, ActionProps>
   test?: ActionRunner<PieceAuth, ActionProps>
@@ -44,6 +45,7 @@ export class IAction<PieceAuth extends PieceAuthProperty, ActionProps extends In
     public readonly test: ActionRunner<PieceAuth, ActionProps>,
     public readonly requireAuth: boolean,
     public readonly errorHandlingOptions: ErrorHandlingOptionsParam,
+    public readonly aiDescription?: string,
   ) { }
 }
 
@@ -74,5 +76,6 @@ export const createAction = <
         defaultValue: false,
       }
     },
+    params.aiDescription,
   )
 }

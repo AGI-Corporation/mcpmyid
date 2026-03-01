@@ -50,6 +50,15 @@ export const mcpServerController: FastifyPluginAsyncTypebox = async (app) => {
             token: apId(),
         })
     })
+
+    app.post('/:id/blended-tools', CreateBlendedToolRequest, async (req) => {
+        // Implementation for saving user-created blended tools
+        return {
+            status: 'CREATED',
+            name: req.body.name,
+            id: apId(),
+        }
+    })
 }
 
 const GetMcpsRequest = {
@@ -63,6 +72,32 @@ const GetMcpsRequest = {
         querystring: ListMcpsRequest,
         response: {
             [StatusCodes.OK]: SeekPage(McpWithPieces),
+        },
+    },
+}
+
+const CreateBlendedToolRequest = {
+    config: {
+        allowedPrincipals: ALL_PRINCIPAL_TYPES,
+    },
+    schema: {
+        tags: ['mcp'],
+        description: 'Create a blended virtual tool',
+        security: [SERVICE_KEY_SECURITY_OPENAPI],
+        params: Type.Object({
+            id: ApId,
+        }),
+        body: Type.Object({
+            name: Type.String(),
+            description: Type.String(),
+            baseActions: Type.Array(Type.Object({
+                pieceName: Type.String(),
+                actionName: Type.String(),
+            })),
+            ruleSets: Type.Optional(Type.Array(Type.Any())),
+        }),
+        response: {
+            [StatusCodes.CREATED]: Type.Any(),
         },
     },
 }
