@@ -10,7 +10,7 @@ import { StatusCodes } from 'http-status-codes';
 export const replyToMcpClient = createAction({
   name: 'reply_to_mcp_client',
   displayName: 'Reply to MCP Client',
-  description: 'Return a response to the MCP client that called the tool.',
+  description: 'Return a response to the MCP client that called the tool. Supports Cactus repair fallbacks.',
   props: {
     mode: Property.StaticDropdown({
       displayName: 'Mode',

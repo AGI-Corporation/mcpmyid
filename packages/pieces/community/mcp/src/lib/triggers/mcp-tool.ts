@@ -8,17 +8,17 @@ import { McpPropertyType } from '@activepieces/shared';
 
   export const mcpTool = createTrigger({
     name: 'mcp_tool',
-    displayName: 'MCP Tool',
-    description: 'Creates a tool that MCP clients can call to execute this flow',
+    displayName: 'MCP Tool (NANDA-ready)',
+    description: 'Creates a tool that MCP and NANDA clients can call to execute this flow. This tool is automatically indexed for Agent OS discovery.',
     props: {
       toolName: Property.ShortText({
         displayName: 'Name',
-        description: 'Used to call this tool from MCP clients like Claude Desktop, Cursor, or Windsurf',
+        description: 'Used to call this tool from MCP clients like Claude Desktop, Cursor, or Windsurf. Automatically broadcasted via NANDA.',
         required: true,
       }),
       toolDescription: Property.LongText({
         displayName: 'Description', 
-        description: 'Used to describe what this tool does and when to use it',
+        description: 'Used to describe what this tool does and when to use it. AI agents use this for semantic routing.',
         required: true,
       }),
       inputSchema: Property.Array({
