@@ -58,4 +58,10 @@ Activepieces Agent OS is now HIPAA-aligned through the **Proxy Smart** integrati
 - **Secure PHI Access**: Use the `FHIR` piece to interact with clinical data via a stateless proxy.
 - **Agent Governance**: The NANDA manifest automatically broadcasts compliance flags (`HIPAA`, `GDPR`) to ensure agents only use clinical tools in secure environments.
 
+## ⚖️ License & Community
+The Agent OS framework is released under the **MIT License**. We follow the **[Code of Conduct](CODE_OF_CONDUCT.md)** to ensure a welcoming environment for all researchers and developers.
+
+- **[Contributing](docs/agent-os/CONTRIBUTING.md)**: Help us build the Internet of Agents.
+- **[Security Policy](docs/agent-os/SECURITY.md)**: AI-specific security guardrails.
+
 By combining robust metadata with adaptive execution and decentralized discovery, Activepieces is now the foundational operating system for the next generation of AI Agents.
