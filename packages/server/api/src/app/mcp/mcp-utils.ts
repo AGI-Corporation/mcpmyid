@@ -4,7 +4,7 @@ import { McpProperty, McpPropertyType } from '@activepieces/shared'
 import { z } from 'zod' 
 
 
-export const MAX_TOOL_NAME_LENGTH = 47
+export const MAX_TOOL_NAME_LENGTH = 64
 
 export function mcpPropertyToZod(property: McpProperty): z.ZodTypeAny {
     let schema: z.ZodTypeAny

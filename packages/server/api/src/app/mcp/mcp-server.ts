@@ -14,7 +14,7 @@ import { webhookService } from '../webhooks/webhook.service'
 import { userInteractionWatcher } from '../workers/user-interaction-watcher'
 import { mcpService } from './mcp-service'
 import { MAX_TOOL_NAME_LENGTH, mcpPropertyToZod, piecePropertyToZod } from './mcp-utils'
-import { repairOutput, semanticValidate } from '../ai/cactus-utils'
+import { deterministicExtract, estimateDifficulty, repairOutput, semanticValidate } from '../ai/cactus-utils'
 
 export async function createMcpServer({
     mcpId,
@@ -55,7 +55,8 @@ export async function createMcpServer({
             const mcpPiece = mcp.pieces.find(p => p.pieceName === piece.name)
             const pieceConnectionExternalId = mcpPiece?.connection?.externalId
             
-            const actionName = `${piece.name.split('piece-')[1]}-${action.name}`.slice(0, MAX_TOOL_NAME_LENGTH)
+            const shortPieceName = piece.name.replace('@activepieces/piece-', '')
+            const actionName = `${shortPieceName}_${action.name}`.slice(0, MAX_TOOL_NAME_LENGTH)
             uniqueActions.add(actionName)
             
             server.tool(
@@ -80,12 +81,25 @@ export async function createMcpServer({
                     }
                     
                     // Cactus adaptive repair layer
-                    const query = params.query || ''; // MCP clients might pass query
-                    const repairedInputs = repairOutput(action, parsedInputs, query);
-                    const validation = semanticValidate(action, repairedInputs, query);
+                    const query = (params.query as string) || ''; // MCP clients might pass query in params
+                    const difficulty = estimateDifficulty(query, 1);
+                    logger.info({ action: action.name, difficulty }, '[McpServer] Executing tool with difficulty estimation');
+
+                    let finalInputs = repairOutput(action, parsedInputs, query);
+                    const validation = semanticValidate(action, finalInputs, query);
 
                     if (!validation.valid) {
-                        logger.warn({ action: action.name, reason: validation.reason }, '[McpServer] Semantic validation failed');
+                        logger.warn({ action: action.name, reason: validation.reason }, '[McpServer] Semantic validation failed, attempting deterministic extraction');
+
+                        // Layer 7: Deterministic Extraction fallback
+                        const extracted = deterministicExtract(action, query);
+                        if (extracted) {
+                            logger.info({ action: action.name }, '[McpServer] Deterministic extraction successful');
+                            finalInputs = {
+                                ...finalInputs,
+                                ...extracted,
+                            }
+                        }
                     }
 
                     const result = await userInteractionWatcher(logger).submitAndWaitForResponse<EngineHelperResponse<ExecuteActionResponse>>({
@@ -95,7 +109,7 @@ export async function createMcpServer({
                         pieceVersion: piece.version,
                         packageType: piece.packageType,
                         pieceType: piece.pieceType,
-                        input: repairedInputs,
+                        input: finalInputs,
                         projectId,
                     })
 
