@@ -47,6 +47,8 @@ export const ActionBase = Type.Object({
   props: PiecePropertyMap,
   requireAuth: Type.Boolean(),
   errorHandlingOptions: Type.Optional(ErrorHandlingOptionsParam),
+  trustPolicy: Type.Optional(Type.String()),
+  categories: Type.Optional(Type.Array(Type.String())),
 })
 
 export type ActionBase = {
@@ -57,6 +59,8 @@ export type ActionBase = {
   props: PiecePropertyMap,
   requireAuth: boolean;
   errorHandlingOptions?: ErrorHandlingOptionsParam;
+  trustPolicy?: string;
+  categories?: string[];
 }
 
 export const TriggerBase = Type.Composite([

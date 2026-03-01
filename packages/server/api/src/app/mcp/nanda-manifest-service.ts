@@ -31,6 +31,11 @@ export const nandaManifestService = (logger: FastifyBaseLogger) => ({
                     name: action.name,
                     description: (action as any).aiDescription || action.description,
                     parameters: action.props,
+                    trust_policy: (action as any).trustPolicy || 'STRICT_PRIVATE',
+                    reward_model: {
+                        unit: 'CREDIT',
+                        base_cost: 0,
+                    }
                 })),
                 protocol: 'MCP/NANDA-1.0',
             }
@@ -39,8 +44,13 @@ export const nandaManifestService = (logger: FastifyBaseLogger) => ({
         return {
             nanda_version: '1.0.0',
             agent_id: `activepieces_project_${projectId}`,
+            trust_anchor: 'ACTIVEPIECES_OS',
             capabilities,
             discovery_url: `{{SYSTEM_URL}}/api/v1/nanda/discover?token=${mcp.token}`,
+            governance: {
+                data_retention: 'ZERO_RETENTION_PREFERENCE',
+                human_in_loop: 'REQUIRED_FOR_SENSITIVE',
+            }
         }
     }
 })
