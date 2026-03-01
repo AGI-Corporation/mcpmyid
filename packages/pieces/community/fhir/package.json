@@ -1,0 +1,13 @@
+{
+  "name": "@activepieces/piece-fhir",
+  "displayName": "FHIR (SMART on FHIR)",
+  "version": "0.1.0",
+  "minimumSupportedRelease": "0.50.2",
+  "logoUrl": "https://cdn.activepieces.com/pieces/fhir.svg",
+  "authors": ["Jules"],
+  "description": "HIPAA-aligned healthcare interoperability via FHIR R4 and SMART App Launch.",
+  "dependencies": {
+    "@activepieces/pieces-framework": "workspace:*",
+    "@activepieces/shared": "workspace:*"
+  }
+}

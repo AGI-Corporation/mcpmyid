@@ -53,4 +53,9 @@ export const myAction = createAction({
 - **[Sample Templates](examples/agent-os/)**: Example workflows for CRM, Support, and Discovery.
 - **[CLI Reference](packages/cli/src/lib/commands/agent-optimize.ts)**: Optimization and Publishing commands.
 
+## 🏥 Healthcare & Compliance (SMART on FHIR)
+Activepieces Agent OS is now HIPAA-aligned through the **Proxy Smart** integration.
+- **Secure PHI Access**: Use the `FHIR` piece to interact with clinical data via a stateless proxy.
+- **Agent Governance**: The NANDA manifest automatically broadcasts compliance flags (`HIPAA`, `GDPR`) to ensure agents only use clinical tools in secure environments.
+
 By combining robust metadata with adaptive execution and decentralized discovery, Activepieces is now the foundational operating system for the next generation of AI Agents.
