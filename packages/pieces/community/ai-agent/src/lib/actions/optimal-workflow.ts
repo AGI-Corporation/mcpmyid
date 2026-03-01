@@ -13,7 +13,7 @@ export const optimalWorkflowAction = createAction({
     model: Property.ShortText({
         displayName: "Model Name",
         required: true,
-        defaultValue: "gpt-4o"
+        defaultValue: "mistral-large-latest"
     }),
     nanda_index: Property.ShortText({
         displayName: "NANDA Index URL",

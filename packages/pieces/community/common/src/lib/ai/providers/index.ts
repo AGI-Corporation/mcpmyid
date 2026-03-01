@@ -7,6 +7,7 @@ import {
 import { Static, Type } from '@sinclair/typebox';
 import { httpClient, HttpMethod } from '../../http';
 import { anthropic } from './anthropic';
+import { mistral, mistralModels } from './mistral';
 import { openai, openaiModels } from './openai';
 import { replicate, replicateModels } from './replicate';
 import { authHeader, hasMapper, model } from './utils';
@@ -28,6 +29,11 @@ It is strongly recommended that you add your credit card information to your Ope
 
 1. Visit the following website: https://replicate.com/account/api-tokens.
 2. Once on the website, locate and click on the option to obtain your Replicate API Key.
+`,
+  mistral: `Follow these instructions to get your Mistral API Key:
+
+1. Visit the following website: https://console.mistral.ai/api-keys/.
+2. Once on the website, locate and click on the option to obtain your Mistral API Key.
 `,
 };
 
@@ -92,6 +98,16 @@ export const AI_PROVIDERS = [
     auth: authHeader({ bearer: true }),
     factory: replicate,
     instructionsMarkdown: AI_PROVIDERS_MAKRDOWN.replicate,
+  },
+  {
+    logoUrl: 'https://cdn.activepieces.com/pieces/mistralai.png',
+    defaultBaseUrl: 'https://api.mistral.ai',
+    label: 'Mistral' as const,
+    value: 'mistral' as const,
+    models: mistralModels,
+    auth: authHeader({ bearer: true }),
+    factory: mistral,
+    instructionsMarkdown: AI_PROVIDERS_MAKRDOWN.mistral,
   },
 ];
 
