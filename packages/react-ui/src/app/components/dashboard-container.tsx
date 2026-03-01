@@ -163,7 +163,7 @@ export function DashboardContainer({
     isSubItem: false,
   };
 
-  const items: SidebarItem[] = [automationGroup, mcpLink, tablesLink, todosLink]
+  const items: SidebarItem[] = [mcpLink, automationGroup, tablesLink, todosLink]
     .filter(embedFilter)
     .filter(permissionFilter)
     .filter(filterAlerts);

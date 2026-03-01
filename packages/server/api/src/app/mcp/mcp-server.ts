@@ -40,7 +40,7 @@ export async function createMcpServer({
 
     const transport = new SSEServerTransport('/api/v1/mcp/messages', reply.raw)
     const server = new McpServer({
-        name: 'Activepieces Agent OS',
+        name: 'MCP.My.ID Agent OS',
         version: '1.0.0',
     })
 

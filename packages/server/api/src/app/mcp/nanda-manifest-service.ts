@@ -48,7 +48,7 @@ export const nandaManifestService = (logger: FastifyBaseLogger) => ({
             ],
             id: `urn:uuid:${projectId}`,
             type: 'AgentFacts',
-            agentName: `Activepieces Project ${projectId}`,
+            agentName: `MCP.My.ID Project ${projectId}`,
             ttl: 3600,
             endpoints: [
                 {
@@ -66,7 +66,7 @@ export const nandaManifestService = (logger: FastifyBaseLogger) => ({
                 human_in_loop: 'REQUIRED_FOR_SENSITIVE',
                 compliance: enabledPieces.some(p => p.pieceName.includes('fhir')) ? ['HIPAA', 'GDPR_HEALTH'] : [],
             },
-            trust_anchor: 'ACTIVEPIECES_OS_VERIFIED',
+            trust_anchor: 'MCP_MY_ID_VERIFIED',
             nanda_version: '1.0.0',
             composition: {
                 blended_tools_count: 0, // Placeholder for dynamically counting blended tools
