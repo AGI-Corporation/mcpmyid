@@ -7,12 +7,12 @@ import { cactusBenchmark } from "./lib/actions/cactus-benchmark";
 import { mcpTool } from "./lib/triggers/mcp-tool";
 
 export const mcp = createPiece({
-  displayName: "Agent OS",
+  displayName: "Route.X",
   auth: PieceAuth.None(),
   minimumSupportedRelease: '0.50.2',
-  logoUrl: "https://cdn.activepieces.com/pieces/ai-agent.svg",
+  logoUrl: "https://cdn.activepieces.com/pieces/route-x.svg",
   authors: ['Gamal72', 'hazemadelkhalel', 'Jules'],
-  description: 'Research-backed AI Agent framework with Cactus-optimized workflows and Mistral evaluation.',
+  description: 'Research-backed Route.X framework with Cactus-optimized workflows and Mistral evaluation.',
   actions: [replyToMcpClient, evaluateRag, evaluateHallucination, cactusBenchmark],
   triggers: [mcpTool],
 });

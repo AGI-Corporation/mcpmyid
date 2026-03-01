@@ -1,6 +1,6 @@
-# Agent OS Architecture
+# Route.X Architecture
 
-This document provides a technical deep-dive into how Agent OS processes tool calls and discovery requests.
+This document provides a technical deep-dive into how Route.X processes tool calls and discovery requests.
 
 ## 1. The Cactus-Optimized Execution Pipeline
 
@@ -27,12 +27,12 @@ graph TD
 
 ## 2. Decentralized Discovery (NANDA)
 
-Agent OS doesn't rely on a central registry. Instead, it uses the **NANDA Protocol** to enable peer-to-peer discovery.
+Route.X doesn't rely on a central registry. Instead, it uses the **NANDA Protocol** to enable peer-to-peer discovery.
 
 ```mermaid
 sequenceDiagram
     participant Agent
-    participant AP as Activepieces Agent OS
+    participant AP as Activepieces Route.X
     participant Index as NANDA Index
 
     AP->>Index: Announce (AgentFacts JSON-LD)
@@ -45,7 +45,7 @@ sequenceDiagram
 
 ## 3. The Evaluation Loop (LLM as a Judge)
 
-Agent OS includes a built-in evaluation layer to ensure the quality of RAG-based tool executions.
+Route.X includes a built-in evaluation layer to ensure the quality of RAG-based tool executions.
 
 ```mermaid
 graph LR

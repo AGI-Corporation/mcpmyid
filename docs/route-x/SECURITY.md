@@ -1,13 +1,13 @@
-# Agent OS Security Policy
+# Route.X Security Policy
 
 Security in the age of autonomous agents requires new guardrails.
 
 ## Supported Versions
-We support the latest release of Activepieces Agent OS for all AI-specific security updates.
+We support the latest release of Activepieces Route.X for all AI-specific security updates.
 
 ## Reporting a Vulnerability
 If you find a vulnerability related to:
-- **Prompt Injection**: Circumventing Agent OS guardrails.
+- **Prompt Injection**: Circumventing Route.X guardrails.
 - **Data Leakage**: Unexpected PHI/PII disclosure through agents.
 - **Protocol Spoofing**: Malicious NANDA AgentFacts announcements.
 

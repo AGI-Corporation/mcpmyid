@@ -6,7 +6,7 @@ import { system } from '../../../../server/api/src/app/helper/system/system'
 // This command helps developers "AI-ify" their pieces
 
 export const agentOptimizeCommand = new Command('agent')
-    .description('AI Agent Framework utilities')
+    .description('Route.X Framework utilities')
 
 agentOptimizeCommand.command('optimize')
     .description('Automatically suggest AI metadata for a piece')

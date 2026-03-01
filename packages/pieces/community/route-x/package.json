@@ -1,11 +1,11 @@
 {
-  "name": "@activepieces/piece-ai-agent",
-  "displayName": "AI Agent",
+  "name": "@activepieces/piece-route-x",
+  "displayName": "Route.X",
   "version": "0.0.1",
   "minimumSupportedRelease": "0.50.2",
-  "logoUrl": "https://cdn.activepieces.com/pieces/ai-agent.svg",
+  "logoUrl": "https://cdn.activepieces.com/pieces/route-x.svg",
   "authors": ["Jules"],
-  "description": "Adaptive AI Agent with Cactus-optimized workflows",
+  "description": "Adaptive Route.X with Cactus-optimized workflows",
   "dependencies": {
     "@activepieces/pieces-framework": "workspace:*",
     "@activepieces/shared": "workspace:*",

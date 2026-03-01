@@ -1,8 +1,8 @@
-# Activepieces Agent OS: The Unified Tool Framework
+# Activepieces Route.X: The Unified Tool Framework
 
-Welcome to the **Activepieces Agent OS**, a research-backed framework designed to optimize the bridge between automated workflows and autonomous AI agents.
+Welcome to the **Activepieces Route.X**, a research-backed framework designed to optimize the bridge between automated workflows and autonomous AI agents.
 
-## 🚀 The Four Pillars of Agent OS
+## 🚀 The Four Pillars of Route.X
 
 ### 1. Cactus-Optimized Execution (Adaptive Routing)
 Based on the **CactusRoute** 7-layer framework, every tool call in Activepieces is now optimized for the most reliable agentic experience:
@@ -47,7 +47,7 @@ Deep integration with leading AI providers to ensure maximum compatibility:
 | `cactus-utils.ts` | The neuro-symbolic engine for repair and validation. |
 | `nanda-manifest-service.ts` | Generates the decentralized capability manifest. |
 | `virtual-tool-service.ts` | Handles the blending of tools and rule execution. |
-| `AI Agent Piece` | The user-facing bridge to trigger optimized workflows. |
+| `Route.X Piece` | The user-facing bridge to trigger optimized workflows. |
 
 ## 🛠️ How to use the optimized metadata
 Piece developers can now add AI-specific context to their actions:
@@ -68,27 +68,27 @@ export const myAction = createAction({
 ```
 
 ## 📚 Resources
-- **[Quickstart Guide](docs/agent-os/quickstart.md)**: 3-step setup for research-backed Agents.
-- **[Sample Templates](examples/agent-os/)**: Example workflows for CRM, Support, and Discovery.
+- **[Quickstart Guide](docs/route-x/quickstart.md)**: 3-step setup for research-backed Agents.
+- **[Sample Templates](examples/route-x/)**: Example workflows for CRM, Support, and Discovery.
 - **[CLI Reference](packages/cli/src/lib/commands/agent-optimize.ts)**: Optimization and Publishing commands.
 
 ## 🏥 Healthcare & Compliance (SMART on FHIR)
-Activepieces Agent OS is now HIPAA-aligned through the **Proxy Smart** integration.
+Activepieces Route.X is now HIPAA-aligned through the **Proxy Smart** integration.
 - **Secure PHI Access**: Use the `FHIR` piece to interact with clinical data via a stateless proxy.
 - **Agent Governance**: The NANDA manifest automatically broadcasts compliance flags (`HIPAA`, `GDPR`) to ensure agents only use clinical tools in secure environments.
 
 ## ⚖️ License & Community
-The Agent OS framework is released under the **MIT License**. We follow the **[Code of Conduct](CODE_OF_CONDUCT.md)** to ensure a welcoming environment for all researchers and developers.
+The Route.X framework is released under the **MIT License**. We follow the **[Code of Conduct](CODE_OF_CONDUCT.md)** to ensure a welcoming environment for all researchers and developers.
 
-- **[Contributing](docs/agent-os/CONTRIBUTING.md)**: Help us build the Internet of Agents.
-- **[Security Policy](docs/agent-os/SECURITY.md)**: AI-specific security guardrails.
+- **[Contributing](docs/route-x/CONTRIBUTING.md)**: Help us build the Internet of Agents.
+- **[Security Policy](docs/route-x/SECURITY.md)**: AI-specific security guardrails.
 
-By combining robust metadata with adaptive execution and decentralized discovery, Activepieces is now the foundational operating system for the next generation of AI Agents.
+By combining robust metadata with adaptive execution and decentralized discovery, Activepieces is now the foundational operating system for the next generation of Route.Xs.
 
 ## 🏗️ Technical Specification
 
 ### Layered Architecture
-Agent OS is architected as a series of nested middleware layers that wrap standard piece execution:
+Route.X is architected as a series of nested middleware layers that wrap standard piece execution:
 
 1.  **Metadata Layer**: Enhances TypeBox schemas with `aiDescription` and `examples`.
 2.  **Discovery Layer (NANDA)**: Negotiates capabilities via `/.well-known/agent.json`.
@@ -97,7 +97,7 @@ Agent OS is architected as a series of nested middleware layers that wrap standa
 5.  **Execution Layer**: Runs the piece action in an isolated sandbox.
 
 ### Protocol Interoperability
-Agent OS is designed to be the "TCP/IP" of the agentic web:
+Route.X is designed to be the "TCP/IP" of the agentic web:
 - **MCP**: Tool-use protocol for LLMs.
 - **AgentFacts**: Discovery protocol for federated indexing.
 - **Cactus-Native**: High-reliability execution protocol.
@@ -109,7 +109,7 @@ graph TD
         Registry[Verified Trust Anchors]
     end
 
-    subgraph "Activepieces Agent OS"
+    subgraph "Activepieces Route.X"
         Manifest[/.well-known/agent.json]
         Rules[Guido Rule Engine]
         Cactus[Cactus Adaptive Layer]

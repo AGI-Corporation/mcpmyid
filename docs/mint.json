@@ -292,12 +292,12 @@
       ]
     },
     {
-      "group": "Agent OS",
+      "group": "Route.X",
       "pages": [
-        "agent-os/about",
-        "agent-os/quickstart",
-        "agent-os/architecture",
-        "agent-os/user-guide",
+        "route-x/about",
+        "route-x/quickstart",
+        "route-x/architecture",
+        "route-x/user-guide",
         "ai/mcp"
       ]
     },

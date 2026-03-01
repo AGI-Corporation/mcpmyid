@@ -1,9 +1,9 @@
-# ⚡ Agent OS Quickstart Guide
+# ⚡ Route.X Quickstart Guide
 
-Get your research-backed, decentralized AI Agent up and running in 5 minutes.
+Get your research-backed, decentralized Route.X up and running in 5 minutes.
 
 ## Step 1: AI-ify your Pieces
-The Agent OS needs semantic metadata to perform its **Adaptive Repair**. Use the CLI to suggest optimized metadata for any piece:
+The Route.X needs semantic metadata to perform its **Adaptive Repair**. Use the CLI to suggest optimized metadata for any piece:
 
 ```bash
 npx ap agent optimize @activepieces/piece-gmail
@@ -15,7 +15,7 @@ This will analyze the actions and suggest `aiDescription` and `examples` fields 
 Instead of exposing 100 small tools, "blend" them into a high-level capability for your agent.
 
 1. Open your Activepieces flow.
-2. Add the **AI Agent** piece.
+2. Add the **Route.X** piece.
 3. In **Virtual Tool Definition**, map your actions:
    ```json
    {
@@ -38,5 +38,5 @@ npx ap agent nanda-publish my-agent --index https://index.projectnanda.org
 Your agent is now discoverable via `/.well-known/agent.json` and follows the **Cactus-Optimized** execution protocol.
 
 ## 🚀 Next Steps
-- [View Sample Workflows](../../examples/agent-os/)
+- [View Sample Workflows](../../examples/route-x/)
 - [Read the Framework Manifesto](../../AGENT_FRAMEWORK.md)

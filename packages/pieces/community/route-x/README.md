@@ -1,6 +1,6 @@
-# AI Agent Piece
+# Route.X Piece
 
-The AI Agent piece is the control center for optimized AI workflows in Activepieces. It leverages the **Activepieces Agent OS** framework to provide the most reliable tool-calling and discovery experience.
+The Route.X piece is the control center for optimized AI workflows in Activepieces. It leverages the **Activepieces Route.X** framework to provide the most reliable tool-calling and discovery experience.
 
 ## Features
 

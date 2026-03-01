@@ -1,10 +1,10 @@
-# Agent OS User Guide
+# Route.X User Guide
 
-Learn how to build powerful, AI-ready automations using the Agent OS framework.
+Learn how to build powerful, AI-ready automations using the Route.X framework.
 
-## 1. Using the AI Agent Piece
+## 1. Using the Route.X Piece
 
-The **AI Agent** piece is your gateway to optimized workflows. Unlike standard integration pieces, it is designed to be called by other LLMs and agents.
+The **Route.X** piece is your gateway to optimized workflows. Unlike standard integration pieces, it is designed to be called by other LLMs and agents.
 
 ### Key Properties:
 - **Model Name**: Choose your preferred provider (Mistral Large is recommended for speed/accuracy).
@@ -53,14 +53,14 @@ graph LR
 
 ## 4. Discovery & Token Rotation
 
-Every Agent OS project has a unique **Discovery Token**.
+Every Route.X project has a unique **Discovery Token**.
 - You can find your token in the **MCP Settings** page.
 - Use this token to register your agent in external indexes or to share it with your team.
 - If your token is compromised, use the **Rotate Token** button to instantly invalidate the old one.
 
 ## 5. Mistral Optimization & Evaluation
 
-If you are using Mistral AI, Agent OS automatically enables **Native Tooling** and advanced **Evaluation Actions**.
+If you are using Mistral AI, Route.X automatically enables **Native Tooling** and advanced **Evaluation Actions**.
 
 ### RAG Evaluation Metrics:
 - **Context Relevance**: Did the system retrieve information that actually answers the question?

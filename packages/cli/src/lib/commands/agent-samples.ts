@@ -3,9 +3,9 @@ import { Command } from 'commander'
 import { agentOptimizeCommand } from './agent-optimize'
 
 agentOptimizeCommand.command('samples')
-    .description('Generate sample Agent OS workflow templates')
+    .description('Generate sample Route.X workflow templates')
     .action(async () => {
-        console.log('📂 Generating sample workflows in ./examples/agent-os...')
+        console.log('📂 Generating sample workflows in ./examples/route-x...')
 
         console.log('\n📄 Created: blended-crm-agent.json')
         console.log('   (Scenario: Gmail + HubSpot + Slack optimization)')

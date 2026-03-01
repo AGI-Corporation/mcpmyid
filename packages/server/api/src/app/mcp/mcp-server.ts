@@ -78,6 +78,15 @@ export async function createMcpServer({
                     result = response.body;
                 } else {
                     result = { status: 'success', message: `Virtual Tool ${vt.name} executed.` };
+
+                    // Layer 5: Blended Execution (Execute base actions)
+                    const baseExecutionResults = await Promise.all(vt.baseActions.map(async (ba) => {
+                        // In a real implementation, this would look up the piece/action and execute it
+                        return { action: ba.actionName, status: 'simulated_success' };
+                    }));
+                    if (baseExecutionResults.length > 0) {
+                        result = { ...result, base_executions: baseExecutionResults };
+                    }
                 }
 
                 // Automatic Evaluation Layer (Layer 6: Observation)

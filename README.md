@@ -46,9 +46,9 @@ src="https://github.com/activepieces/activepieces/assets/1812998/76c97441-c285-4
 <br>
 <br>
 
-# 🤯 Welcome to MCP.My.ID
+# 🤯 Welcome to Route.X
 
-[![AGI Corp Agent OS](https://img.shields.io/badge/Agent%20OS-Enabled-brightgreen?style=for-the-badge&logo=ai)](AGENT_FRAMEWORK.md)
+[![AGI Corp Route.X](https://img.shields.io/badge/Agent%20OS-Enabled-brightgreen?style=for-the-badge&logo=ai)](AGENT_FRAMEWORK.md)
 
 All-in-one AI automation designed to be **extensible** through a **type-safe** pieces framework written in **TypeScript**.
 When you contribute pieces to Activepieces they become automatically available as MCP servers that you can use with LLMs through Claude Desktop, Cursor or Windsurf!
@@ -56,7 +56,7 @@ When you contribute pieces to Activepieces they become automatically available a
 <br>
 <br>
 
-## 🔥 Why MCP.My.Id is Different:
+## 🔥 Why Route.X is Different:
 
 - **💖 Loved by Everyone**: Intuitive interface and great experience for both technical and non-technical users with a quick learning curve.
   
@@ -64,7 +64,7 @@ When you contribute pieces to Activepieces they become automatically available a
 
 - **🌐 Open Ecosystem:** All pieces are open source and available on npmjs.com, **60% of the pieces are contributed by the community**.
 
-- **🤖 Agent OS Pillar**: Built on research-backed adaptive routing (**CactusRoute**), logic-based validation (**Guido**), and decentralized discovery (**NANDA**).
+- **🤖 Route.X Pillar**: Built on research-backed adaptive routing (**CactusRoute**), logic-based validation (**Guido**), and decentralized discovery (**NANDA**).
 - **🛠️ Largest open source MCP toolkit**: All our pieces (280+) are available as MCP that you can use with LLMs on Claude Desktop, Cursor or Windsurf.
 - **🌬️ Deep Mistral Integration**: Native support for Mistral AI agents with optimized tool-calling performance.
 
@@ -96,7 +96,7 @@ When you contribute pieces to Activepieces they become automatically available a
 - [x] Languages Translations
 - [x] Customizable Templates
 - [X] 280+ Pieces, check https://www.activepieces.com/pieces
-- [x] **Agent OS Core**: Powered by **CactusRoute** (Adaptive Routing) & **Guido** (Rule Engine).
+- [x] **Route.X Core**: Powered by **CactusRoute** (Adaptive Routing) & **Guido** (Rule Engine).
 - [x] **Decentralized Discovery**: Native **NANDA Protocol** support via `/.well-known/agent.json`.
 - [x] **OpenAPI Import**: Automatically generate MCP tools from OpenAPI specs (inspired by `mcp-generator-2.0`).
 - [x] **Mistral AI**: Deep, native integration for high-performance agentic workflows and **LLM-as-a-Judge** evaluation.
@@ -105,12 +105,12 @@ When you contribute pieces to Activepieces they become automatically available a
 
 <br>
 
-## 🏗️ Agent OS System Architecture
+## 🏗️ Route.X System Architecture
 
-Activepieces Agent OS is the world's first unified "Agentic Operating System" that bridges the gap between raw LLM capabilities and reliable enterprise automation.
+Activepieces Route.X is the world's first unified "Agentic Operating System" that bridges the gap between raw LLM capabilities and reliable enterprise automation.
 
 ### 🧩 The Multi-Layer Execution Stack
-Every request processed by Agent OS flows through a research-backed pipeline designed for 99.9% tool-calling reliability.
+Every request processed by Route.X flows through a research-backed pipeline designed for 99.9% tool-calling reliability.
 
 ```mermaid
 graph TD
@@ -118,7 +118,7 @@ graph TD
         User([Human/Agent]) -- "Natural Language Task" --> OS
     end
 
-    subgraph "Activepieces Agent OS Core"
+    subgraph "Activepieces Route.X Core"
         OS{Request Router}
 
         subgraph "1. NANDA Discovery"
@@ -158,7 +158,7 @@ graph TD
 
 ---
 
-## 📖 Branded Agent OS User Guide
+## 📖 Branded Route.X User Guide
 
 ### 🛡️ Step 1: Secure Your Data with Virtual Tools (Guido)
 Don't let agents hallucinate with raw APIs. Use **Virtual Tools** to create high-level, safe capabilities.
@@ -180,7 +180,7 @@ Experience the lowest latency in the industry with our **Mistral Deep Integratio
 ```mermaid
 sequenceDiagram
     participant Agent as Strategic Agent
-    participant AP as Activepieces Agent OS
+    participant AP as Activepieces Route.X
     participant Piece as Secure Piece
 
     Agent->>AP: Request Tool Discovery
@@ -193,20 +193,20 @@ sequenceDiagram
 ```
 
 ### 🌬️ Mistral & OpenAI Optimization
-Agent OS comes with native optimization for the world's best models.
+Route.X comes with native optimization for the world's best models.
 - **Mistral Native Tooling**: Optimized mappings for `mistral-large-latest`.
 - **LLM as a Judge**: Built-in evaluation actions for RAG outputs (Mistral-powered).
 - **OpenAPI Auto-Generator**: Import any `.json` or `.yaml` OpenAPI spec and instantly generate optimized MCP tools (powered by our `mcp-generator-2.0` logic).
 
-[Read the full Agent OS Documentation Hub](docs/agent-os/about.md)
+[Read the full Route.X Documentation Hub](docs/route-x/about.md)
 
 <br>
 
 ## 🔬 Research & Framework Integration
 
-Agent OS is the result of deep integration between several state-of-the-art agentic frameworks:
+Route.X is the result of deep integration between several state-of-the-art agentic frameworks:
 
-| Framework | Role in Agent OS | Key Benefit |
+| Framework | Role in Route.X | Key Benefit |
 |-----------|------------------|-------------|
 | **[CactusRoute](https://github.com/quotentiroler/CactusRoute)** | Adaptive Execution | 99% success rate via 7-layer repair and fallback. |
 | **[Guido](https://github.com/quotentiroler/Guido)** | Governance & Rules | Deterministic safety for autonomous tool use. |

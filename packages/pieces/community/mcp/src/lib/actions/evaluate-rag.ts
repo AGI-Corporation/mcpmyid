@@ -2,7 +2,7 @@ import {
   createAction,
   Property,
 } from '@activepieces/pieces-framework';
-import { AIChatRole, AuthenticationType, HttpMethod, httpClient } from '@activepieces/pieces-common';
+import { AI, AIChatRole, AuthenticationType, HttpMethod, httpClient } from '@activepieces/pieces-common';
 
 export const evaluateRag = createAction({
   name: 'evaluate_rag',

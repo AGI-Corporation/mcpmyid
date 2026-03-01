@@ -1,15 +1,15 @@
-# Agent OS Technical Architecture
+# Route.X Technical Architecture
 
-This document outlines the unified architecture of the **Activepieces Agent OS**, integrating research-backed protocols for adaptive execution, logic-based governance, and decentralized discovery.
+This document outlines the unified architecture of the **Activepieces Route.X**, integrating research-backed protocols for adaptive execution, logic-based governance, and decentralized discovery.
 
 ## 📐 Unified Framework Overview
 
-The Agent OS acts as a high-reliability middleware stack between AI Agents and the Activepieces piece ecosystem.
+The Route.X acts as a high-reliability middleware stack between Route.Xs and the Activepieces piece ecosystem.
 
 ```mermaid
 graph TD
     subgraph "Phase 1: Discovery (NANDA)"
-        UserAgent([AI Agent]) -->|Negotiate| Manifest[/.well-known/agent.json]
+        UserAgent([Route.X]) -->|Negotiate| Manifest[/.well-known/agent.json]
         Manifest -->|Broadcasting| Index[NANDA Global Index]
     end
 
