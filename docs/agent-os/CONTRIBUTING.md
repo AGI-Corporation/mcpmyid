@@ -1,20 +1,23 @@
 # Contributing to Agent OS
 
-We welcome research-backed contributions to the Activepieces Agent OS framework!
+Help us build the Internet of Agents!
 
-## Research Standards
-The Agent OS is built on peer-reviewed research (CactusRoute, NANDA, Guido). Contributions should ideally follow these standards:
-- **Optimization**: Propose improvements to the 7-layer execution stack.
-- **Protocol**: Ensure AgentFacts (JSON-LD) compliance for any new metadata fields.
-- **Metadata**: Add `aiDescription` and `examples` to every new piece action.
+## 🏗️ Architecture
 
-## Development Workflow
-1. **Engine**: Core AI utilities live in `packages/server/api/src/app/ai/`.
-2. **Pieces**: Agentic pieces live in `packages/pieces/community/ai-agent` and `fhir`.
-3. **CLI**: Add agent-scaling commands in `packages/cli/src/lib/commands/`.
+Agent OS consists of three core components:
+1. **CactusRoute**: Adaptive routing and repair logic.
+2. **NANDA**: Decentralized discovery protocol.
+3. **Guido**: Virtual tool orchestration.
 
-## Quality Gates
-- Every new tool must be cross-verified against the `semanticValidate` logic.
-- New NANDA capabilities should be documented in the Capability Registry.
+## 🛠️ Development
 
-Thank you for building the Internet of Agents with us!
+### Local Setup
+1. Clone the repository.
+2. Run `npm install`.
+3. Start the dev server: `npm run dev`.
+
+### Adding Pieces
+Pieces should follow the standard Activepieces framework. Agentic pieces live in `packages/pieces/community/mcp` and `fhir`.
+
+### Testing
+Use the built-in MCP server to test your tools with agents.

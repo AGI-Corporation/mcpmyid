@@ -1,4 +1,11 @@
 {
   "name": "@activepieces/piece-mcp",
-  "version": "0.0.2"
+  "displayName": "Agent OS",
+  "version": "0.1.0",
+  "description": "The foundational operating system for AI Agents, featuring Cactus routing, NANDA discovery, and Guido virtual tools.",
+  "dependencies": {
+    "@activepieces/pieces-framework": "workspace:*",
+    "@activepieces/shared": "workspace:*",
+    "ai": "3.4.27"
+  }
 }
