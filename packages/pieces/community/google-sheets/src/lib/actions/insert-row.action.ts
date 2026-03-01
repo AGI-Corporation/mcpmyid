@@ -15,8 +15,9 @@ import { commonProps, rowValuesProp } from '../common/props';
 export const insertRowAction = createAction({
   auth: googleSheetsAuth,
   name: 'insert_row',
-  description: 'Append a row of values to an existing sheet',
   displayName: 'Insert Row',
+  aiDescription: 'Append a new row of data to a Google Sheet. Ideal for logging, data collection, and record keeping.',
+  description: 'Append a row of values to an existing sheet',
   props: {
     ...commonProps,
     as_string: Property.Checkbox({

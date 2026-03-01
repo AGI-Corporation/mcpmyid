@@ -15,14 +15,17 @@ export const slackSendMessageAction = createAction({
   auth: slackAuth,
   name: 'send_channel_message',
   displayName: 'Send Message To A Channel',
+  aiDescription: 'Send a message to a specific Slack channel. Ideal for status updates, notifications, or responding to user queries.',
   description: 'Send message to a channel',
   props: {
     info: singleSelectChannelInfo,
     channel: slackChannel(true),
     text: Property.LongText({
       displayName: 'Message',
+      aiDescription: 'The text content of the message. Markdown is supported.',
       description: 'The text of your message',
       required: true,
+      examples: ['Hello team! The AI agent has completed the task.', '🚨 System Alert: Memory usage is high.']
     }),
     username,
     profilePicture,

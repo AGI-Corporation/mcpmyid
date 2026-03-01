@@ -5,6 +5,7 @@
   "description": "The foundational operating system for AI Agents, featuring Cactus routing, NANDA discovery, and Guido virtual tools.",
   "dependencies": {
     "@activepieces/pieces-framework": "workspace:*",
+    "@activepieces/pieces-common": "workspace:*",
     "@activepieces/shared": "workspace:*",
     "ai": "3.4.27"
   }

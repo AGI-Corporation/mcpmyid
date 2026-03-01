@@ -10,10 +10,19 @@ export const optimalWorkflowAction = createAction({
       displayName: "Task / Prompt",
       required: true,
     }),
-    model: Property.ShortText({
+    model: Property.StaticDropdown({
         displayName: "Model Name",
         required: true,
-        defaultValue: "gpt-4o"
+        defaultValue: "gpt-4o",
+        options: {
+            options: [
+                { label: "GPT-4o", value: "gpt-4o" },
+                { label: "Mistral Large", value: "mistral-large-latest" },
+                { label: "Claude 3.5 Sonnet", value: "claude-3-5-sonnet-latest" },
+                { label: "Pixtral", value: "pixtral-12b-latest" },
+                { label: "Codestral", value: "codestral-latest" }
+            ]
+        }
     }),
     nanda_index: Property.ShortText({
         displayName: "NANDA Index URL",

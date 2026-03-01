@@ -1,0 +1,10 @@
+{
+  "name": "@activepieces/piece-mistralai",
+  "displayName": "Mistral AI",
+  "version": "0.1.0",
+  "dependencies": {
+    "@activepieces/pieces-framework": "workspace:*",
+    "@activepieces/pieces-common": "workspace:*",
+    "@activepieces/shared": "workspace:*"
+  }
+}
