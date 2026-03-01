@@ -48,4 +48,9 @@ export const myAction = createAction({
 })
 ```
 
+## 📚 Resources
+- **[Quickstart Guide](docs/agent-os/quickstart.md)**: 3-step setup for research-backed Agents.
+- **[Sample Templates](examples/agent-os/)**: Example workflows for CRM, Support, and Discovery.
+- **[CLI Reference](packages/cli/src/lib/commands/agent-optimize.ts)**: Optimization and Publishing commands.
+
 By combining robust metadata with adaptive execution and decentralized discovery, Activepieces is now the foundational operating system for the next generation of AI Agents.
