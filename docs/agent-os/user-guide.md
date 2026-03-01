@@ -36,6 +36,21 @@ Rules ensure that your agent follows your business logic.
 ### Example: Protect your Email
 "If the `recipient_email` does not contain `@company.com`, then DO NOT allow `send_email` to proceed."
 
+```mermaid
+graph LR
+    User[User/Agent] --> VT[Virtual Tool]
+    subgraph "Guido Governance"
+    VT --> R1{Rule: Is Contact Set?}
+    R1 -- No --> Fail[Block & Feedback]
+    R1 -- Yes --> R2{Rule: Safe Email?}
+    R2 -- No --> Append[Modify Payload]
+    R2 -- Yes --> Success[Execute Base Tools]
+    end
+    Success --> Piece1[HubSpot]
+    Success --> Piece2[Gmail]
+    Append --> Piece2
+```
+
 ## 4. Discovery & Token Rotation
 
 Every Agent OS project has a unique **Discovery Token**.
@@ -54,3 +69,13 @@ If you are using Mistral AI, Agent OS automatically enables **Native Tooling** a
 
 ### Hallucination Detection:
 Use the **Mistral Hallucination Detection** action in your flows to verify specific claims against a source of truth. It returns a structured report indicating which parts of an answer are supported and which are potentially fabricated.
+
+```mermaid
+graph TD
+    A[Model Answer] --> H{Hallucination Detection}
+    B[Reference Context] --> H
+    H --> S[Supported Claims]
+    H --> F[Fabricated Claims]
+    F --> Alert[Human-in-the-Loop Alert]
+    S --> Pub[Publish Answer]
+```

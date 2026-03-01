@@ -200,6 +200,19 @@ Agent OS comes with native optimization for the world's best models.
 
 [Read the full Agent OS Documentation Hub](docs/agent-os/about.md)
 
+<br>
+
+## 🔬 Research & Framework Integration
+
+Agent OS is the result of deep integration between several state-of-the-art agentic frameworks:
+
+| Framework | Role in Agent OS | Key Benefit |
+|-----------|------------------|-------------|
+| **[CactusRoute](https://github.com/quotentiroler/CactusRoute)** | Adaptive Execution | 99% success rate via 7-layer repair and fallback. |
+| **[Guido](https://github.com/quotentiroler/Guido)** | Governance & Rules | Deterministic safety for autonomous tool use. |
+| **[NANDA](https://projectnanda.org)** | Discovery Protocol | Decentralized, federated agent interoperability. |
+| **[MCP Generator](https://github.com/quotentiroler/mcp-generator-2.0)** | Tool Ingestion | Instant conversion of OpenAPI specs to optimized tools. |
+
 ---
 
 ## 🔌 Create Your Own Piece
