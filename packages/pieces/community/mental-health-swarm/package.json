@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "description": "Mental Health Swarm discovered from Widecanvas, optimized for Agent OS.",
   "dependencies": {
-    "@activepieces/pieces-framework": "workspace:*"
+    "@activepieces/pieces-framework": "workspace:*",
+    "@activepieces/shared": "workspace:*"
   }
 }
