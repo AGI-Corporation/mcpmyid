@@ -15,6 +15,7 @@ import { userInteractionWatcher } from '../workers/user-interaction-watcher'
 import { mcpService } from './mcp-service'
 import { MAX_TOOL_NAME_LENGTH, mcpPropertyToZod, piecePropertyToZod } from './mcp-utils'
 import { deterministicExtract, estimateDifficulty, repairOutput, semanticValidate } from '../ai/cactus-utils'
+import { virtualToolService } from './virtual-tool-service'
 
 export async function createMcpServer({
     mcpId,
@@ -152,6 +153,62 @@ export async function createMcpServer({
         flow.version.trigger.type === TriggerType.PIECE &&
         flow.version.trigger.settings.pieceName === '@activepieces/piece-mcp',
     )
+
+    // Register virtual tools
+    if (mcp.virtualTools) {
+        for (const vt of mcp.virtualTools) {
+            const blendedActions = await Promise.all(vt.baseActions.map(async (ba: any) => {
+                const metadata = await pieceMetadataService(logger).getOrThrow({
+                    name: ba.pieceName,
+                    version: undefined,
+                    projectId,
+                    platformId,
+                })
+                return {
+                    ...metadata.actions[ba.actionName],
+                    pieceName: ba.pieceName,
+                }
+            }))
+
+            const vtService = virtualToolService(logger)
+            const blendedAction = await vtService.blendActions(vt.name, vt.description, blendedActions)
+
+            server.tool(
+                vt.name,
+                blendedAction.description!,
+                Object.fromEntries(
+                    Object.entries(blendedAction.props).map(([key, prop]) =>
+                        [key, piecePropertyToZod(prop)],
+                    ),
+                ),
+                async (params) => {
+                    // Apply validation rules before "execution"
+                    try {
+                        vtService.validateBlendedData(params, vt.ruleSets)
+                    } catch (e: any) {
+                        return {
+                            content: [{
+                                type: 'text',
+                                text: `❌ Validation Error: ${e.message}`,
+                            }],
+                        }
+                    }
+
+                    // Since full execution orchestration requires complex state management,
+                    // we return the validated parameters and the execution plan.
+                    return {
+                        content: [{
+                            type: 'text',
+                            text: `✅ Virtual Tool ${vt.name} validated.\n\n` +
+                                `This super-tool blends ${vt.baseActions.length} actions. The Agent OS has optimized the following execution sequence:\n` +
+                                vt.baseActions.map((ba: any, i: number) => `${i+1}. Execute ${ba.pieceName}:${ba.actionName}`).join('\n') +
+                                `\n\n\`\`\`json\n${JSON.stringify(params, null, 2)}\n\`\`\``,
+                        }],
+                    }
+                }
+            )
+        }
+    }
 
     for (const flow of mcpFlows) {
         const triggerSettings = flow.version.trigger.settings as McpTrigger

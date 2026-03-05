@@ -48,10 +48,24 @@ export type McpPieceWithConnection = Static<typeof McpPieceWithConnection>
 
 
 
+export const VirtualTool = Type.Object({
+    id: Type.String(),
+    name: Type.String(),
+    description: Type.String(),
+    baseActions: Type.Array(Type.Object({
+        pieceName: Type.String(),
+        actionName: Type.String(),
+    })),
+    ruleSets: Type.Array(Type.Any()),
+})
+
+export type VirtualTool = Static<typeof VirtualTool>
+
 export const Mcp = Type.Object({
     ...BaseModelSchema,
     projectId: ApId,
     token: ApId,
+    virtualTools: Type.Optional(Type.Array(VirtualTool)),
 })
 
 export type Mcp = Static<typeof Mcp> 

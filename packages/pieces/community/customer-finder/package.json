@@ -1,0 +1,10 @@
+{
+  "name": "@activepieces/piece-customer-finder",
+  "displayName": "Customer Finder",
+  "version": "0.1.0",
+  "description": "AI-powered tool to find target customers and generate outreach copy.",
+  "main": "src/index.ts",
+  "dependencies": {
+    "@activepieces/pieces-framework": "workspace:*"
+  }
+}

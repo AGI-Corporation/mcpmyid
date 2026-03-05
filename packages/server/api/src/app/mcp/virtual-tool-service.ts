@@ -12,14 +12,15 @@ export type BlendedTool = {
 }
 
 export const virtualToolService = (logger: FastifyBaseLogger) => ({
-    async blendActions(name: string, description: string, actions: ActionBase[]): Promise<ActionBase> {
+    async blendActions(name: string, description: string, actions: (ActionBase & { pieceName: string })[]): Promise<ActionBase> {
         // Aggregate properties from all actions
         const blendedProps: PiecePropertyMap = {}
 
         for (const action of actions) {
+            const shortPieceName = action.pieceName.replace('@activepieces/piece-', '')
             for (const [propName, prop] of Object.entries(action.props)) {
-                // Handle naming collisions by prefixing with piece name
-                const uniqueName = `${action.name}_${propName}`
+                // Handle naming collisions by prefixing with piece and action name
+                const uniqueName = `${shortPieceName}_${action.name}_${propName}`
                 blendedProps[uniqueName] = {
                     ...prop,
                     displayName: `${action.displayName}: ${prop.displayName}`
@@ -38,6 +39,8 @@ export const virtualToolService = (logger: FastifyBaseLogger) => ({
 
     // Apply Guido-inspired rules to blended data
     validateBlendedData(data: Record<string, any>, ruleSets: any[]) {
+        if (!ruleSets) return;
+
         for (const rule of ruleSets) {
             const { conditions, targets } = rule
             const conditionMet = conditions.every((c: any) => {
@@ -77,65 +80,5 @@ export const virtualToolService = (logger: FastifyBaseLogger) => ({
 
     getNestedValue(obj: any, path: string) {
         return path.split('.').reduce((acc, part) => acc && acc[part], obj)
-    },
-
-    async createToolsFromOpenApi(openApiSpec: any): Promise<ActionBase[]> {
-        const tools: ActionBase[] = []
-        const paths = openApiSpec.paths || {}
-        const serverUrl = openApiSpec.servers?.[0]?.url || ''
-
-        for (const [path, methods] of Object.entries(paths)) {
-            for (const [method, operation] of Object.entries(methods as any)) {
-                const op = operation as any
-                const name = op.operationId || `${method}_${path.replace(/\//g, '_')}`
-
-                const props: PiecePropertyMap = {}
-
-                // Map parameters
-                if (op.parameters) {
-                    for (const param of op.parameters) {
-                        props[param.name] = Property.ShortText({
-                            displayName: param.name,
-                            description: param.description || '',
-                            required: param.required || false,
-                        })
-                    }
-                }
-
-                // Map request body (simplified)
-                if (op.requestBody?.content?.['application/json']?.schema) {
-                    props['body'] = Property.Json({
-                        displayName: 'Request Body',
-                        description: 'JSON request body',
-                        required: true,
-                    })
-                }
-
-                tools.push({
-                    name,
-                    displayName: op.summary || name,
-                    description: op.description || op.summary || `Execute ${method.toUpperCase()} ${path}`,
-                    props,
-                    // Use a hidden property to store metadata for execution
-                    requireAuth: !!op.security,
-                    run: async (context) => {
-                        // Proto-execution logic for OpenAPI-imported tools
-                        const queryParams = { ...context.propsValue }
-                        delete queryParams['body']
-
-                        return {
-                            message: `Executing ${method.toUpperCase()} ${serverUrl}${path}`,
-                            request: {
-                                url: `${serverUrl}${path}`,
-                                method: method.toUpperCase(),
-                                queryParams,
-                                body: context.propsValue['body']
-                            }
-                        }
-                    }
-                } as unknown as ActionBase)
-            }
-        }
-        return tools
     }
 })
