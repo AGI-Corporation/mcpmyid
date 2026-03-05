@@ -158,12 +158,16 @@ export async function createMcpServer({
     if (mcp.virtualTools) {
         for (const vt of mcp.virtualTools) {
             const blendedActions = await Promise.all(vt.baseActions.map(async (ba: any) => {
-                return pieceMetadataService(logger).getOrThrow({
+                const metadata = await pieceMetadataService(logger).getOrThrow({
                     name: ba.pieceName,
                     version: undefined,
                     projectId,
                     platformId,
-                }).then(metadata => metadata.actions[ba.actionName])
+                })
+                return {
+                    ...metadata.actions[ba.actionName],
+                    pieceName: ba.pieceName,
+                }
             }))
 
             const vtService = virtualToolService(logger)

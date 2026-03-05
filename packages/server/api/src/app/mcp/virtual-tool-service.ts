@@ -12,14 +12,15 @@ export type BlendedTool = {
 }
 
 export const virtualToolService = (logger: FastifyBaseLogger) => ({
-    async blendActions(name: string, description: string, actions: ActionBase[]): Promise<ActionBase> {
+    async blendActions(name: string, description: string, actions: (ActionBase & { pieceName: string })[]): Promise<ActionBase> {
         // Aggregate properties from all actions
         const blendedProps: PiecePropertyMap = {}
 
         for (const action of actions) {
+            const shortPieceName = action.pieceName.replace('@activepieces/piece-', '')
             for (const [propName, prop] of Object.entries(action.props)) {
-                // Handle naming collisions by prefixing with piece name
-                const uniqueName = `${action.name}_${propName}`
+                // Handle naming collisions by prefixing with piece and action name
+                const uniqueName = `${shortPieceName}_${action.name}_${propName}`
                 blendedProps[uniqueName] = {
                     ...prop,
                     displayName: `${action.displayName}: ${prop.displayName}`
