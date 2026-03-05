@@ -13,6 +13,10 @@ export const McpEntity = new EntitySchema<McpSchema>({
         ...BaseColumnSchemaPart,
         projectId: ApIdSchema,
         token: ApIdSchema,
+        virtualTools: {
+            type: 'jsonb',
+            nullable: true,
+        },
     },
     indices: [
         {

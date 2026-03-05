@@ -13,6 +13,8 @@ export const nandaManifestService = (logger: FastifyBaseLogger) => ({
 
         const enabledPieces = mcp.pieces.filter((piece) => piece.status === McpPieceStatus.ENABLED)
 
+        const blendedToolsCount = mcp.virtualTools?.length || 0;
+
         const capabilities = await Promise.all(enabledPieces.map(async (p) => {
             const metadata = await pieceMetadataService(logger).getOrThrow({
                 name: p.pieceName,
@@ -69,7 +71,7 @@ export const nandaManifestService = (logger: FastifyBaseLogger) => ({
             trust_anchor: 'MCP_MY_ID_VERIFIED',
             nanda_version: '1.0.0',
             composition: {
-                blended_tools_count: 0, // Placeholder for dynamically counting blended tools
+                blended_tools_count: blendedToolsCount,
                 data_fusion: 'ENABLED',
             }
         }
