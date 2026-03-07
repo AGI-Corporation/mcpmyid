@@ -1,0 +1,4 @@
+## 2026-03-01 - [OAuth postMessage Origin Hardening]
+**Vulnerability:** Insecure use of `postMessage` with wildcard origin (`'*'`) and weak origin validation using `startsWith`.
+**Learning:** OAuth redirect handlers often use `window.opener.postMessage` to send authorization codes back to the main application window. Using `'*'` allows any site that can open or reference the redirect window to intercept these codes. Furthermore, using `startsWith` for origin validation is bypassable (e.g., `https://trusted.com.attacker.com` starts with `https://trusted.com`).
+**Prevention:** Always use a specific target origin in `postMessage` calls. For origin validation in message listeners, use strict equality with a derived origin from a trusted URL (e.g., `new URL(trustedUrl).origin === event.origin`). Always add safety checks for URL parsing.
