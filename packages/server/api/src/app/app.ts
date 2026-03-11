@@ -82,6 +82,7 @@ import { pieceMetadataServiceHooks } from './pieces/piece-metadata-service/hooks
 import { pieceSyncService } from './pieces/piece-sync-service'
 import { platformModule } from './platform/platform.module'
 import { platformService } from './platform/platform.service'
+import { platformUtils } from './platform/platform.utils'
 import { projectHooks } from './project/project-hooks'
 import { projectModule } from './project/project-module'
 import { storeEntryModule } from './store-entry/store-entry.module'
