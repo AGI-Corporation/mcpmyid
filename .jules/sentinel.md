@@ -1,0 +1,4 @@
+## 2025-05-15 - [HIGH] Insecure postMessage Origin in OAuth Redirects
+**Vulnerability:** Use of wildcard origin (`'*'`) in `window.postMessage` calls within OAuth redirect handlers (both server-side generated HTML and client-side React routes).
+**Learning:** Wildcard origins in `postMessage` allow any site that can open or iframe the redirect page to intercept sensitive information, such as OAuth authorization codes. In a multi-tenant environment (like Activepieces with custom domains), the expected origin must be resolved dynamically.
+**Prevention:** Always restrict the `targetOrigin` to a trusted value. For client-side redirects, use `window.location.origin` if the communication is same-origin. For server-side generated redirects, use platform-aware URL resolvers (e.g., `domainHelper.getPublicUrl`) to determine the correct frontend origin.
