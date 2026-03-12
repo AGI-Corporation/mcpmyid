@@ -250,12 +250,15 @@ export const setupApp = async (app: FastifyInstance): Promise<FastifyInstance> =
                 return reply.send('The code is missing in url')
             }
             else {
+                const platformId = await platformUtils.getPlatformIdForRequest(request)
+                const frontendUrl = await domainHelper.getPublicUrl({ platformId })
+                const targetOrigin = new URL(frontendUrl).origin
                 return reply
                     .type('text/html')
                     .send(
                         `<script>if(window.opener){window.opener.postMessage({ 'code': '${encodeURIComponent(
                             params.code,
-                        )}' },'*')}</script> <html>Redirect succuesfully, this window should close now</html>`,
+                        )}' }, '${targetOrigin}')}</script> <html>Redirect succuesfully, this window should close now</html>`,
                     )
             }
         },
